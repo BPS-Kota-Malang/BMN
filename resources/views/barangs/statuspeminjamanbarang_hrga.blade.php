@@ -20,7 +20,9 @@
                             <th>NAMA PEMINJAM</th>
                             <th>PETUGAS ASET IT</th>
                             <th>NAMA BARANG</th>
-                            <th>JUMLAH</th>
+                            <th>LOKASI</th>
+                            <th>MILIK</th>
+                            <!-- <th>JUMLAH</th> -->
                             <th>DESKRIPSI</th>
                             <th>TANGGAL PINJAM</th>
                             <th>JATUH TEMPO</th>
@@ -35,12 +37,14 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$rp->kode_peminjaman}}</td>
                             <td>{{Auth::user()->name}}</td>
-                            <td>{{$rp->petugas}}</td>
+                            <td>{{$rp->admin->name}}</td>
                             <td>{{$rp->barang->kode_barang}} - {{$rp->barang->nama_barang}} ({{$rp->merk->nama_merkbarang}})</td>
-                            <td>{{$rp->jumlah}}</td>
+                            <td>{{$rp->lokasi->nama_lokasibarang}} ({{$rp->gudang->nama_gedung}})</td>
+                            <td>{{$rp->departemen->nama_departemen}}</td>
+                            <!-- <td>{{$rp->jumlah}}</td> -->
                             <td>{{$rp->deskripsi}}</td>
                             <td>{{$rp->tanggal_pinjam}}</td>
-                            <td>{{$rp->tanggal_pengembalian}}</td>
+                            <td>{{$rp->tanggal_kembali}}</td>
                             <td>
                                 @if($rp->tanggal_pengembalian!=null)
                                 {{$rp->tanggal_pengembalian}}
@@ -111,7 +115,7 @@
                                                 </span>
                                             </button>
                                         </form>
-
+                               
                                 @else
                                 </div>
                                 @endif

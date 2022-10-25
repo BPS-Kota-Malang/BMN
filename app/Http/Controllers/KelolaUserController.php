@@ -51,7 +51,7 @@ class KelolaUserController extends Controller
         $u->alamat=$request->alamat;
         $u->role=$request->role;
         $u->id_jabatan=$request->id_jabatan;
-
+     
         $u->save();
         return redirect('/kelolausers');
     }
@@ -103,7 +103,7 @@ class KelolaUserController extends Controller
         $user->role=$request->role;
         $user->save();
         return redirect('/kelolausers');
-
+      
     }
 
     /**
@@ -121,6 +121,10 @@ class KelolaUserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+        if(Gate::allows('users')) return $next($request);
+        abort(403, 'Anda tidak memiliki cukup hak akses!');
+        });
     }
 }

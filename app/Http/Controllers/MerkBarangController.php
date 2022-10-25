@@ -28,7 +28,7 @@ class MerkBarangController extends Controller
      */
     public function create()
     {
-
+        
         $q = DB::table('merk_products')->select(DB::raw('MAX(RIGHT(kode_merk,4)) as kode'));
         $kd="";
         if($q->count()>0)
@@ -42,9 +42,9 @@ class MerkBarangController extends Controller
         else{
             $kd = "0001";
         }
-
-
-
+        
+        
+        
         return view('barangs.addmerk', compact('kd'));
     }
 
@@ -110,7 +110,7 @@ class MerkBarangController extends Controller
      */
     public function destroy($id)
     {
-
+        
         $merk = MerkProduct::find($id);
         $merk->delete();
         return redirect()->route('merkbarang.index');
@@ -127,6 +127,10 @@ class MerkBarangController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+        if(Gate::allows('merkbarang')) return $next($request);
+        abort(403, 'Anda tidak memiliki cukup hak akses!');
+        });
     }
 }

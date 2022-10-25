@@ -10,7 +10,7 @@ class NonaktifProduct extends Model
     use HasFactory;
     protected $guarded=['id'];
     protected $table = "nonaktif_products";
-    protected $fillable= ['kode_nonaktif', 'deskripsi','jumlah', 'tanggal_nonaktif', 'id_product', 'id_merk','id_status' ];
+    protected $fillable= ['kode_nonaktif', 'deskripsi','jumlah', 'tanggal_nonaktif', 'id_product', 'id_merk','id_lokasi','id_status' ];
 
     public function barang()
     {
@@ -22,6 +22,10 @@ class NonaktifProduct extends Model
         return $this->belongsTo(MerkProduct::class, 'id_merk');
     }
 
+    public function lokasi()
+    {
+        return $this->belongsTo(LocationProduct::class, 'id_lokasi');
+    }
 
     public function status()
     {

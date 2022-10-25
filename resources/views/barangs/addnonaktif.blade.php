@@ -35,7 +35,15 @@
                         @endforeach
                     </select>
                 </div>
-                
+                <div class="form-group">
+                    <label class="form-label" for="mr_barang"><b>Lokasi Barang</b></label>
+                    <select class="form-select mb-3 shadow-none" name="id_lokasi" id="id_lokasi">
+                        <option selected="">Pilih Lokasi...</option>
+                        @foreach ($lokasi as $l)
+                        <option value="{{ $l->id }}">{{ $l->nama_lokasibarang }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="form-label" for="deskripsi"><b>Deskripsi</b></label>
                     <input type="text" class="form-control" id="deskripsi" name="deskripsi"

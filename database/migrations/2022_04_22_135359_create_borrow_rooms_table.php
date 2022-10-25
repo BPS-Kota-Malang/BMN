@@ -21,14 +21,16 @@ class CreateBorrowRoomsTable extends Migration
             $table->string('nama_peminjam');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_selesai');
-            $table->date('tgl_selesai');
+            $table->date('tgl_selesai')->nullable()->default(NULL);;
             $table->timestamps();
             $table->unsignedBigInteger('petugas');
             $table->unsignedBigInteger('id_room');
-            $table->unsignedBigInteger('id_user');
+            // $table->unsignedBigInteger('id_building');
+            // $table->unsignedBigInteger('id_user');
             $table->foreign('petugas')->references('id')->on('users');
             $table->foreign('id_room')->references('id')->on('rooms');
-            $table->foreign('id_user')->references('id')->on('users');
+            // $table->foreign('id_building')->references('id')->on('buildings');
+            // $table->foreign('id_user')->references('id')->on('users');
 
         });
     }

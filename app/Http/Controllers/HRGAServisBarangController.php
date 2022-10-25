@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ServiceProduct;
 use App\Models\Product;
 use App\Models\MerkProduct;
+use App\Models\LocationProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -33,9 +34,9 @@ class HRGAServisBarangController extends Controller
     public function create()
     {
         $barang = Product::where('id_statusproduct', '=' , 8)->get();
+       
 
-
-
+        
         $q = DB::table('service_products')->select(DB::raw('MAX(RIGHT(kode_servis,4)) as kode'));
         $kd="";
         if($q->count()>0)
@@ -49,10 +50,10 @@ class HRGAServisBarangController extends Controller
         else{
             $kd = "0001";
         }
-
-
-
-
+        
+        
+        
+        
         return view ('barangs.addservis', compact('barang','kd'));
     }
 
@@ -70,9 +71,11 @@ class HRGAServisBarangController extends Controller
             'deskripsi' => $request->deskripsi,
             'nama_petugas' => $request->nama_petugas,
             'tanggal_servis' => $request->tanggal_servis,
-            // 'tanggal_kembali' => $request->tanggal_kembali,
+            'tanggal_kembali' => $request->tanggal_kembali,
             'id_product' => $request->id_product,
             'id_merk' => $barang->id_merkproduct,
+            'id_lokasi' => $barang->id_lokasiproduct,
+            'id_gudang' => $barang->id_gudang,
             'id_user' => Auth::user()->id,
 
 
@@ -105,7 +108,7 @@ class HRGAServisBarangController extends Controller
     {
         $servis = ServiceProduct::find($id);
         $barang=Product::where('id_statusproduct', '=' , 8)->get();
-
+      
 
         return view('barangs.editservisbarang', compact('servis','barang'));
     }
@@ -128,6 +131,8 @@ class HRGAServisBarangController extends Controller
         $servis->tanggal_kembali=$request->tanggal_kembali;
         $servis->id_product=$request->id_product;
         $servis->id_merk=$barang->id_merkproduct;
+        $servis->id_lokasi=$barang->id_lokasiproduct;
+        $servis->id_gudang=$barang->id_gudang;
         $servis->save();
 
         $statbarang = Product::find($servis->id_product);
@@ -135,9 +140,9 @@ class HRGAServisBarangController extends Controller
         $barang->id_statusproduct=8;
         $barang->save();
         $statbarang->save();
-        return redirect('/servis');
+        return redirect('/servis'); 
 
-        // return $request;
+        // return $request; 
     }
 
     /**
@@ -165,8 +170,13 @@ class HRGAServisBarangController extends Controller
         $pdf = PDF::loadview('barangs.servis-pdf')->setPaper('a4', 'landscape');
         return $pdf->stream('data-servisbarang.pdf');
     }
+
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+        if(Gate::allows('servis_hrga')) return $next($request);
+        abort(403, 'Anda tidak memiliki cukup hak akses!');
+        });
     }
 }

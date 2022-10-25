@@ -36,7 +36,7 @@
                     <select class="form-select mb-3 shadow-none" name="nama_ruangan" id="id_ruangan">
                         <option selected="">Pilih Ruangan...</option>
                         @foreach ($ruangan as $r)
-                        <option value="{{ $r->id }}">{{ $r->nama_ruangan }}</option>
+                        <option value="{{ $r->id }}">{{ $r->nama_ruangan }} - {{$r->building->nama_gedung}} </option>
                         @endforeach
                     </select>
                 </div>
@@ -48,10 +48,6 @@
                 <div class="form-group">
                     <label class="form-label" for="tanggal_pinjam"><b>Tanggal Pinjam</b></label>
                     <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="tgl_selesai"><b>Tanggal selesai</b></label>
-                    <input type="date" class="form-control" id="tgl_selesai" name="tgl_selesai">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="tanggal_selesai"><b>Jatuh Tempo</b></label>

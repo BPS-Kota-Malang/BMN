@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\RoomCategory;
+use App\Models\Building;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use PDF;
@@ -58,7 +59,8 @@ class HRGARuanganController extends Controller
         }
 
         $roomcat = RoomCategory::all();
-        return view ('ruangan.add', compact('roomcat',  'kd'));
+        $building = Building::all();
+        return view ('ruangan.add', compact('roomcat', 'building', 'kd'));
     }
 
     /**
@@ -74,6 +76,7 @@ class HRGARuanganController extends Controller
             'nama_ruangan' => $request->nama_ruangan,
             'status_ruangan' => $request->status_ruangan,
             'id_roomcategory' => $request->id_kategoriruangan,
+            'id_building' => $request->id_gudang,
         ]);
 
         return redirect()->route('ruangan.index')->with('toast_success', 'Data Berhasil Tersimpan !');
@@ -100,9 +103,9 @@ class HRGARuanganController extends Controller
     {
         $roomcat = RoomCategory::all();
         $gudang = Building::all();
-        $room = Room::with('roomcategory',)->find($id);
+        $room = Room::with('roomcategory','building')->find($id);
 
-        return view ('ruangan.edit', compact('room', 'roomcat', ));
+        return view ('ruangan.edit', compact('room', 'roomcat', 'gudang'));
     }
 
     /**
@@ -114,7 +117,7 @@ class HRGARuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $room = Room::with('roomcategory',)->find($id);
+        $room = Room::with('roomcategory','building')->find($id);
         $room->kode_ruangan=$request->kode_ruangan;
         $room->nama_ruangan=$request->nama_ruangan;
         $room->status_ruangan=$request->status_ruangan;
@@ -132,7 +135,7 @@ class HRGARuanganController extends Controller
      */
     public function destroy($id)
     {
-        $room = Room::with('roomcategory',)->find($id);
+        $room = Room::with('roomcategory', 'building')->find($id);
         $room->delete();
         return redirect()->route('ruangan.index');
     }
@@ -148,6 +151,10 @@ class HRGARuanganController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+        if(Gate::allows('ruangan_hrga')) return $next($request);
+        abort(403, 'Anda tidak memiliki cukup hak akses!');
+        });
     }
 }

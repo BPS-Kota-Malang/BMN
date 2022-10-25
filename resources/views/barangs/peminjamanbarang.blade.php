@@ -17,10 +17,11 @@
                             <th>NO</th>
                             <th>KODE PINJAM</th>
                             <th>NAMA PEMINJAM</th>
-                            <th>JUMLAH</th>
                             <th>NAMA BARANG</th>
-                            <th>KONDISI</th>
-                            <th>CATATAN</th>
+                            <!-- <th>MERK</th> -->
+                            <!-- <th>LOKASI</th> -->
+                            <!-- <th>MILIK</th> -->
+                            <!-- <th>JUMLAH</th> -->
                             <th>DESKRIPSI</th>
                             <th>TANGGAL PINJAM</th>
                             <th>JATUH TEMPO</th>
@@ -37,12 +38,12 @@
                             <td>{{$rp->nama_peminjam}}</td>
                             <td>{{$rp->barang->kode_barang}} - {{$rp->barang->nama_barang}}
                                 ({{$rp->merk->nama_merkbarang}})</td>
-                            <td>{{$rp->jumlah}}</td>
-                            <td>{{ $rp->kondisi_setelahdipinjam }}</td>
-                            <td>{{ $rp->catatan }}</td>
+                            {{-- <!-- <td>{{$rp->lokasi->nama_lokasibarang}} ({{$rp->gudang->nama_gedung}})</td> -->
+                            <!-- <td>{{$rp->departemen->nama_departemen}}</td> --> --}}
+                            <!-- <td>{{$rp->jumlah}}</td> -->
                             <td>{{$rp->deskripsi}}</td>
                             <td>{{$rp->tanggal_pinjam}}</td>
-                            <td>{{$rp->tanggal_pengembalian}}</td>
+                            <td>{{$rp->tanggal_kembali}}</td>
                             <td>
                                 @if($rp->tanggal_pengembalian!=null)
                                 {{$rp->tanggal_pengembalian}}
@@ -114,13 +115,14 @@
                                 <th>KODE PINJAM</th>
                                 <th>NAMA PEMINJAM</th>
                                 <th>NAMA BARANG</th>
-                                <!--<th>JUMLAH</th>-->
+                                <!-- <th>MERK</th> -->
+                                <!--<th>LOKASI</th>-->
+                                <!--<th>MILIK</th>-->
+                                <!-- <th>JUMLAH</th> -->
                                 <th>DESKRIPSI</th>
                                 <th>TANGGAL PINJAM</th>
                                 <th>JATUH TEMPO</th>
-                                <th>KONDISI</th>
-                                <th>CATATAN</th>
-                                <th>Tanggal Pengembalian</th>
+                                <th>TANGGAL PENGEMBALIAN</th>
                                 <th>STATUS</th>
                                 <th>AKSI</th>
                             </tr>
@@ -133,14 +135,14 @@
                                 <td>{{$rp->nama_peminjam}}</td>
                                 <td>{{$rp->barang->kode_barang}} - {{$rp->barang->nama_barang}}
                                     ({{$rp->merk->nama_merkbarang}})</td>
-                                <td>{{$rp->jumlah}}</td>
-                                <td>{{ $rp->kondisi_setelahdipinjam }}</td>
-                            <td>{{ $rp->catatan }}</td>
+                                {{-- <!-- <td>{{$rp->lokasi->nama_lokasibarang}} ({{$rp->gudang->nama_gedung}})</td> -->
+                                <!-- <td>{{$rp->departemen->nama_departemen}}</td> --> --}}
+                                <!-- <td>{{$rp->jumlah}}</td> -->
                                 <td>{{$rp->deskripsi}}</td>
                                 <td>{{$rp->tanggal_pinjam}}</td>
-
+                                <td>{{$rp->tanggal_kembali}}</td>
                                 <td>
-                                    @if($rp->tanggal_pengembalian)
+                                    @if($rp->tanggal_pengembalian!=null)
                                     {{$rp->tanggal_pengembalian}}
                                     @elseif($rp->status!='disetujui')
                                     <span class="badge bg-secondary">tidak ada</span>
@@ -162,7 +164,7 @@
                                 <td>
                                     @if($rp->status=='disetujui')
                                     <div class="flex align-items-center list-user-action">
-                                        @if($rp->tanggal_pengembalian)
+                                        @if($rp->tanggal_pengembalian==null)
                                         <a class="btn btn-sm btn-icon">
                                             <form action="{{ route('riwayatpinjambarang.return', $rp->id) }}"
                                                 method="POST">

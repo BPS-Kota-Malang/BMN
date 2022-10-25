@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Product;
 use App\Models\MerkProduct;
+use App\Models\LocationProduct;
 use App\Models\StatusProduct;
 use PDF;
 use DB;
@@ -20,7 +21,7 @@ class NonaktifBarangController extends Controller
      */
     public function index()
     {
-
+         
         $barang = Product::orderBy('id','desc')->where('id_statusproduct', '=' , 9)->orwhere('id_statusproduct', '=' , 10)->get();
         return view('barangs.nonaktif', compact('barang'));
     }
@@ -37,7 +38,7 @@ class NonaktifBarangController extends Controller
         // $lokasi = LocationProduct::all();
         // $status = StatusProduct::all();
 
-
+        
         // $q = DB::table('nonaktif_products')->select(DB::raw('MAX(RIGHT(kode_nonaktif,4)) as kode'));
         // $kd="";
         // if($q->count()>0)
@@ -51,11 +52,11 @@ class NonaktifBarangController extends Controller
         // else{
         //     $kd = "0001";
         // }
-
-
-
-
-        return view ('barangs.addnonaktif', compact('barang','merk','status','kd'));
+        
+        
+        
+        
+        return view ('barangs.addnonaktif', compact('barang','merk','lokasi','status','kd'));
     }
 
     /**
@@ -107,7 +108,7 @@ class NonaktifBarangController extends Controller
         // $lokasi=LocationProduct::all();
         // $status=StatusProduct::all();
 
-        return view('barangs.editnonaktifbarang', compact('nonaktif','barang','merk','status'));
+        return view('barangs.editnonaktifbarang', compact('nonaktif','barang','merk','lokasi','status'));
     }
 
     /**
@@ -129,7 +130,7 @@ class NonaktifBarangController extends Controller
         // $nonaktif->id_lokasi=$request->id_lokasi;
         // $nonaktif->id_status=$request->id_status;
         // $nonaktif->save();
-        // return redirect('/nonaktif');
+        // return redirect('/nonaktif'); 
     }
 
     /**
@@ -156,6 +157,10 @@ class NonaktifBarangController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+        if(Gate::allows('nonaktif')) return $next($request);
+        abort(403, 'Anda tidak memiliki cukup hak akses!');
+        });
     }
 }

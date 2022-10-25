@@ -53,6 +53,8 @@
             <th>Nama Barang</th>
             <!-- <th>Merk</th> -->
             <th>Kategori</th>
+            <th>Lokasi</th>
+            <th>Owner</th>
             <!-- <th>Harga Beli</th> -->
             <!-- <th>Jumlah</th>
             <th>Satuan</th> -->
@@ -66,6 +68,8 @@
             <td>{{$b->kode_barang}}</td>
             <td>{{$b->nama_barang}} ({{$b->merek->nama_merkbarang}})</td>
             <td>{{$b->productcategory->nama_kategbarang}}</td>
+            <td>{{$b->lokasi->nama_lokasibarang}} ({{$b->gudang->nama_gedung}})</td>
+            <td>{{$b->departemen->nama_departemen}}</td>
             <!-- <td>{{$b->harga_beli}}</td> -->
             <!-- <td>{{$b->jumlah}}</td>
             <td>{{$b->satuan}}</td> -->

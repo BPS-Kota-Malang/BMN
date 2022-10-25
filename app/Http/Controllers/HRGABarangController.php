@@ -6,7 +6,10 @@ use App\Models\Product;
 use App\Models\BorrowProduct;
 use App\Models\ProductCategory;
 use App\Models\MerkProduct;
+use App\Models\LocationProduct;
+use App\Models\Department;
 use App\Models\StatusProduct;
+use App\Models\Building;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use PDF;
@@ -30,7 +33,7 @@ class HRGABarangController extends Controller
         return view('barangs.index_hrga', compact('barang_hrga','jtersedia','jdipinjam','jrusak','jhilang','jdiservis'));
     }
 
-
+  
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +44,9 @@ class HRGABarangController extends Controller
     {
         $prodcat = ProductCategory::all();
         $merk = MerkProduct::all();
+        $lokasi = LocationProduct::all();
+        $gudang = Building::all();
+        $departemen = Department::all();
         $status = StatusProduct::all();
 
 
@@ -58,7 +64,7 @@ class HRGABarangController extends Controller
             $kd = "0001";
         }
 
-        return view ('barangs.addbarang', compact('prodcat', 'merk', 'status', 'kd'));
+        return view ('barangs.addbarang', compact('prodcat', 'merk', 'lokasi', 'gudang', 'departemen', 'status', 'kd'));
     }
 
     /**
@@ -74,6 +80,9 @@ class HRGABarangController extends Controller
             'nama_barang' => $request->nama_barang,
             'id_merkproduct' => $request->id_merkbarang,
             'id_productcategory' => $request->id_kategoribarang,
+            'id_lokasiproduct' => $request->id_lokasibarang,
+            'id_gudang' => $request->id_gudang,
+            'id_department' => $request->id_departemen,
             // 'harga_beli' => $request->hargabeli,
             'jumlah' => $request->jumlah,
             'satuan' => $request->satuan,
@@ -104,13 +113,16 @@ class HRGABarangController extends Controller
      */
     public function edit($id)
     {
-        $prod = Product::with('productcategory', 'merek', 'status', )->find($id);
+        $prod = Product::with('productcategory', 'merek','lokasi', 'departemen', 'status', 'gudang')->find($id);
         $prodcat = ProductCategory::all();
         $merk = MerkProduct::all();
-
+        $lokasi = LocationProduct::all();
+        $departemen = Department::all();
         $status = StatusProduct::all();
+        $gudang = Building::all();
+       
 
-        return view ('barangs.editbarang', compact('prod', 'prodcat', 'merk',  'status',));
+        return view ('barangs.editbarang', compact('prod', 'prodcat', 'merk', 'lokasi', 'departemen', 'status','gudang'));
     }
 
     /**
@@ -122,12 +134,14 @@ class HRGABarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $prod = Product::with('productcategory', 'merek', 'status')->find($id);
+        $prod = Product::with('productcategory', 'merek','lokasi', 'departemen', 'status')->find($id);
         $prod->kode_barang=$request->kode_barang;
         $prod->nama_barang=$request->nama_barang;
         $prod->id_merkproduct=$request->id_merkbarang;
         $prod->id_productcategory=$request->id_kategoribarang;
-
+        $prod->id_lokasiproduct=$request->id_lokasibarang;
+        $prod->id_gudang=$request->id_gudang;
+        $prod->id_department=$request->id_departemen;
         // $prod->harga_beli=$request->hargabeli;
         $prod->jumlah=$request->jumlah;
         $prod->satuan=$request->satuan;
@@ -135,9 +149,9 @@ class HRGABarangController extends Controller
         $prod->tanggal_input=$request->tglinput;
         $prod->save();
         return redirect('/barang');
-
-
-
+      
+       
+        
     }
 
     /**
@@ -164,6 +178,12 @@ class HRGABarangController extends Controller
 
     public function __construct()
     {
+       
+
         $this->middleware('auth');
+        $this->middleware(function($request, $next){
+            if(Gate::allows('hrgabarang')) return $next($request);
+            abort(403, 'Anda tidak memiliki cukup hak akses!');
+            });
     }
 }

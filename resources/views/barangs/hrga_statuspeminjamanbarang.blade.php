@@ -20,6 +20,8 @@
                             <th>NAMA PEMINJAM</th>
                             <th>PETUGAS ASET IT</th>
                             <th>NAMA BARANG</th>
+                            <th>LOKASI</th>
+                            <th>MILIK</th>
                             <!-- <th>JUMLAH</th> -->
                             <th>DESKRIPSI</th>
                             <th>TANGGAL PINJAM</th>
@@ -37,7 +39,8 @@
                             <td>{{Auth::user()->name}}</td>
                             <td>{{$rp->admin->name}}</td>
                             <td>{{$rp->barang->kode_barang}} - {{$rp->barang->nama_barang}} ({{$rp->merk->nama_merkbarang}})</td>
-                           
+                            <td>{{$rp->lokasi->nama_lokasibarang}} ({{$rp->gudang->nama_gedung}})</td>
+                            <td>{{$rp->departemen->nama_departemen}}</td>
                             <!-- <td>{{$rp->jumlah}}</td> -->
                             <td>{{$rp->deskripsi}}</td>
                             <td>{{$rp->tanggal_pinjam}}</td>
@@ -112,7 +115,7 @@
                                                 </span>
                                             </button>
                                         </form>
-
+                               
                                 @else
                                 </div>
                                 @endif

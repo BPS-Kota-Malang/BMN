@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\BorrowProduct;
 use App\Models\MerkProduct;
+use App\Models\LocationProduct;
+use App\Models\Department;
+use App\Models\Building;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -25,12 +28,12 @@ class HRGAPinjamBarangController extends Controller
     public function index()
     {
 
-        $reqpinjam=BorrowProduct::where('id_user', Auth::user()->id)->orderBy('id','desc')->get();
+        $reqpinjam=BorrowProduct::where('petugas', Auth::user()->id)->orderBy('id','desc')->get();
         return view('barangs.statuspeminjamanbarang_hrga', compact('reqpinjam'));
     }
 
-    //tampilan halaman peminjaman pada role "pjbarang"
-    public function index_pjbarang()
+    //tampilan halaman peminjaman pada role "approval"
+    public function index_approval()
     {
 
         $reqpinjam=BorrowProduct::where('status','=','diajukan')->where('petugas','=', Auth::user()->id)->orderBy('id','desc')->get();
@@ -54,8 +57,8 @@ class HRGAPinjamBarangController extends Controller
     public function create()
     {
         //proses menampilkan daftar barang dengan status "tersedia" dan "diajukan"
-        $barang = Product::where('id_statusproduct', '=',1)->get();
-        $petugas = User::where('role', '=', 'pjbarang' )->get();
+        $barang = Product::where('id_statusproduct', '=' , 8)->get();
+        $petugas = User::where('role', '=' , 'approval')->get();
 
         //membuat kode peminjaman barang
         $q = DB::table('borrow_products')->select(DB::raw('MAX(RIGHT(kode_peminjaman,4)) as kode'));
@@ -96,20 +99,20 @@ class HRGAPinjamBarangController extends Controller
             'petugas' => $request->petugas,
             'id_product' => $request->nama_barang,
             'id_merk' => $barang->id_merkproduct,
-            'id_user' => Auth::user()->id,
-            'jumlah' => $request->jumlah,
+            'id_lokasi' => $barang->id_lokasiproduct,
+            'id_department' => $barang->id_department,
+            'id_gudang' => $barang->id_gudang,
+            // 'id_user' => Auth::user()->id,
+            // 'jumlah' => $request->jumlah,
             'deskripsi' => $request->deskripsi,
             'tanggal_pinjam' => $request->tanggal_pinjam,
-            'tanggal_pengembalian'=>$request->tanggal_pengembalian,
-            // 'kondisi_setelahdipinjam'=>$request->kondisi_setelahpinjam,
-            // 'catatan'=>$request->catatan,
             'tanggal_kembali' => $request->tanggal_kembali,
             'status' => $request->status,
 
         ]);
 
         //proses mengubah status pada daftar barang menjadi 'diajukan' setelah requestor mengajukan peminjaman
-        $barang->id_statusproduct='Diajukan';
+        $barang->id_statusproduct=13;
         $barang->save();
 
 
@@ -139,8 +142,8 @@ class HRGAPinjamBarangController extends Controller
     public function edit($id)
     {
         $reqpinjam=BorrowProduct::find($id);
-        $barang = Product::where('id_statusproduct', '=' , 1)->get();
-        $petugas = User::where('role', '=' , 'pjbarang')->get();
+        $barang = Product::where('id_statusproduct', '=' , 8)->get();
+        $petugas = User::where('role', '=' , 'approval')->get();
 
         return view('barangs.editajukanpeminjaman', compact('reqpinjam','barang','petugas'));
     }
@@ -160,11 +163,13 @@ class HRGAPinjamBarangController extends Controller
         $reqpinjam = BorrowProduct::find($id);
         $reqpinjam->id_product=$request->nama_barang;
         $reqpinjam->id_merk=$barang->id_merkproduct;
-        $reqpinjam->jumlah=$request->jumlah;
+        $reqpinjam->id_lokasi=$barang->id_lokasiproduct;
+        $reqpinjam->id_department=$barang->id_department;
+        $reqpinjam->id_gudang=$barang->id_gudang;
+        // $reqpinjam->jumlah=$request->jumlah;
         $reqpinjam->petugas=$request->petugas;
         $reqpinjam->deskripsi=$request->deskripsi;
         $reqpinjam->tanggal_pinjam=$request->tanggal_pinjam;
-        // $reqpinjam->tanggal_pengembalian=$request->tanggal_pengembalian;
         $reqpinjam->tanggal_kembali=$request->tanggal_kembali;
         $reqpinjam->save();
 
@@ -173,13 +178,13 @@ class HRGAPinjamBarangController extends Controller
         {
             //mengubah status barang lama menjadi tersedia
             $baranglama=Product::find($request->barang_lama);
-            $baranglama->id_statusproduct=1;
+            $baranglama->id_statusproduct=8;
             $baranglama->save();
 
 
         }
         //mengubah status barang baru menjadi diajukan
-        $barang->id_statusproduct=3;
+        $barang->id_statusproduct=13;
         $barang->save();
 
 
@@ -199,7 +204,7 @@ class HRGAPinjamBarangController extends Controller
     {
         $reqpinjam=BorrowProduct::find($id);
         $barang = Product::find($reqpinjam->id_product);
-        $barang->id_statusproduct=3;
+        $barang->id_statusproduct=8;
         $barang->save();
         $reqpinjam->delete();
 
@@ -218,11 +223,11 @@ class HRGAPinjamBarangController extends Controller
 
         //proses mengubah status pada daftar barang menjadi "dipinjam"
         $product=Product::find($approve->id_product);
-        $product->id_statusproduct=4 ;
+        $product->id_statusproduct=11 ;
         $product->save();
 
 
-        return redirect()->action([PinjamBarangController::class, 'index_pjbarang']);
+        return redirect()->action([PinjamBarangController::class, 'index_approval']);
 
     }
 
@@ -237,11 +242,11 @@ class HRGAPinjamBarangController extends Controller
 
         //proses mengubah status pada daftar barang menjadi "tersedia"
         $product=Product::find($rejected->id_product);
-        $product->id_statusproduct=1;
+        $product->id_statusproduct=8;
         $product->save();
 
 
-        return redirect()->action([PinjamBarangController::class, 'index_pjbarang']);
+        return redirect()->action([PinjamBarangController::class, 'index_approval']);
 
     }
 
@@ -253,7 +258,7 @@ class HRGAPinjamBarangController extends Controller
         $return->save();
 
         $product=Product::find($request->id_product);
-        $product->id_statusproduct=1;
+        $product->id_statusproduct=8;
         $product->save();
 
         return redirect()->back();
@@ -280,13 +285,13 @@ class HRGAPinjamBarangController extends Controller
         ]);
         $peminjaman->save();
 
-        return redirect()->action([PinjamBarangController::class, 'index_pjbarang']);
+        return redirect()->action([PinjamBarangController::class, 'index_approval']);
 
     }
 
     public function cetak_pinjambarang()
     {
-        $reqpinjam = BorrowProduct::where('id_user', Auth::user()->id)->orderBy('id','desc')->paginate();
+        $reqpinjam = BorrowProduct::where('petugas', Auth::user()->id)->orderBy('id','desc')->paginate();
 
         view()->share('pinjambarang', $reqpinjam);
         $pdf = PDF::loadview('barangs.pinjambarang-pdf')->setPaper('a4', 'landscape');
@@ -315,6 +320,9 @@ class HRGAPinjamBarangController extends Controller
     {
 
         $this->middleware('auth');
-
+        $this->middleware(function($request, $next){
+            if(Gate::allows('ajukanpinjambarang_hrga')) return $next($request);
+            abort(403, 'Anda tidak memiliki cukup hak akses!');
+            });
     }
 }

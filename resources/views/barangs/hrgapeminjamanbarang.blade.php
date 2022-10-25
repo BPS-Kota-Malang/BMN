@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label"><b>Nama Barang</b></label>
-
+                   
                     <select class="form-select mb-3 shadow-none" name="nama_barang" id="id_barang">
                         <option selected="">Pilih Barang...</option>
                         @foreach ($barang as $b)
@@ -41,28 +41,24 @@
                         @endforeach
                     </select>
                 </div>
-
-                <div class="form-group">
+                
+                <!-- <div class="form-group">
                     <label class="form-label" for="jm_barang"><b>Jumlah</b></label>
-                    <input type="text" class="form-control" id="jumlah" name="jumlah"
-                    value="{{ $reqpinjam->jumlah }}" placeholder="Input jumlah barang...">
-                </div>
+                    <input type="text" class="form-control" id="jm_barang" name="jumlah"
+                        placeholder="Input jumlah barang...">
+                </div> -->
 
                 <div class="form-group">
                     <label class="form-label" for="nm_peminjam"><b>Deskripsi</b></label>
                     <input type="text" class="form-control" id="deskripsi" name="deskripsi"
                         placeholder="Input deskripsi keperluan...">
-                </div>
+                </div> 
 
                 <div class="form-group">
                     <label class="form-label" for="tgl_dipinjam"><b>Tanggal Pinjam</b></label>
                     <input type="date" class="form-control" id="tgl_dipinjam" name="tanggal_pinjam">
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="tanggal_pengembalian"><b>Tanggal Pinjam</b></label>
-                    <input type="date" class="form-control" id="tgl_pengembalian" name="tanggal_pengembalian">
-                </div>
-
+              
                 <div class="form-group">
                     <label class="form-label" for="tgl_kembali"><b>Jatuh Tempo</b></label>
                     <input type="date" class="form-control" id="tgl_kembali" name="tanggal_kembali">

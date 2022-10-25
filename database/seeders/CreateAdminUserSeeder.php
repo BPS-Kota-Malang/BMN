@@ -21,8 +21,9 @@ class CreateAdminUserSeeder extends Seeder
             'password'=>bcrypt('12345678'),
             'kontak'=>'082247477770',
             'alamat'=>'malang',
-            'role'=>'admin',
-            'id_jabatan'=>'1',
+            'role'=>'approval',
+            'id_jabatan'=>'7',
+            'image'=>'ad.png',
 
         ]);
         DB::table('users')->insert([
@@ -31,8 +32,9 @@ class CreateAdminUserSeeder extends Seeder
             'password'=>bcrypt('12345678'),
             'kontak'=>'082247477770',
             'alamat'=>'malang',
-            'role'=>'pjruangan',
-            'id_jabatan'=>'2',
+            'role'=>'requestor',
+            'id_jabatan'=>'11',
+            'image'=>'admin.png',
 
         ]);
         DB::table('users')->insert([
@@ -41,19 +43,20 @@ class CreateAdminUserSeeder extends Seeder
             'password'=>bcrypt('12345678'),
             'kontak'=>'082247477770',
             'alamat'=>'malang',
-            'role'=>'pjbarang',
-            'id_jabatan'=>'3',
+            'role'=>'hrga',
+            'id_jabatan'=>'15',
+            'image'=>'ad.png',
 
         ]);
-        DB::table('users')->insert([
-            'name'=>'peminjam',
-            'email'=>'peminjam@gmail.com',
-            'password'=>bcrypt('12345678'),
-            'kontak'=>'082247477770',
-            'alamat'=>'malang',
-            'role'=>'peminjam',
-            'id_jabatan'=>'4',
+        // DB::table('users')->insert([
+        //     'name'=>'peminjam',
+        //     'email'=>'peminjam@gmail.com',
+        //     'password'=>bcrypt('12345678'),
+        //     'kontak'=>'082247477770',
+        //     'alamat'=>'malang',
+        //     'role'=>'peminjam',
+        //     'id_jabatan'=>'4',
 
-        ]);
+        // ]);
     }
 }

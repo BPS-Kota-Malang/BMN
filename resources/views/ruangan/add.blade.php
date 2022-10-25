@@ -36,6 +36,15 @@
                         @endforeach
                     </select>
                 </div>
+                {{-- <div class="form-group">
+                    <label class="form-label"><b>Gudang</b></label>
+                    <select class="form-select mb-3 shadow-none" name="id_gudang" id="id_gudang">
+                        <option selected="">Pilih Gudang...</option>
+                        @foreach ($building as $bd)
+                        <option value="{{ $bd->id }}">{{ $bd->nama_gedung }}</option>
+                        @endforeach
+                    </select>
+                </div> --}}
                 <br><br>
                 <button type="submit" class="btn btn-primary">Tambahkan</button>
             </form>

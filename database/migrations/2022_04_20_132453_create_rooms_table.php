@@ -19,7 +19,7 @@ class CreateRoomsTable extends Migration
             $table->string('nama_ruangan');
             $table->string('status_ruangan');
             $table->foreignId('id_roomcategory')->constrained('room_categories')->onDelete('cascade')->onUpdate('cascade');
-           
+            // $table->foreignId('id_building')->constrained('buildings')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 
 

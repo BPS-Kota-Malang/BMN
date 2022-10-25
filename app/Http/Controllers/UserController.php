@@ -21,11 +21,11 @@ class UserController extends Controller
         $user=User::orderBy('id','desc')->paginate();
         return view ('users.index', compact('user'));
     }
-
+    
 
     public function register(Request $request)
     {
-
+     
         $u=new User();
         $jab=Jabatan::all();
         $u->name=$request->name;
@@ -36,12 +36,12 @@ class UserController extends Controller
         $u->role='requestor';
         $u->id_jabatan=$request->id_jabatan;
         $u->save();
-
+        
         // return $request;
         return redirect('/login');
+        
 
-
-
+       
     }
     /**
      * Show the form for creating a new resource.
@@ -118,8 +118,12 @@ class UserController extends Controller
         return $pdf->stream('daftar-users.pdf');
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     //$this->middleware('auth');
+    //     $this->middleware(function($request, $next){
+    //     if(Gate::allows('users')) return $next($request);
+    //     abort(403, 'Anda tidak memiliki cukup hak akses!');
+    //     });
+    // }
 }

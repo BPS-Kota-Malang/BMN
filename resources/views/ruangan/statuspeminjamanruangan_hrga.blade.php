@@ -19,6 +19,7 @@
                             <th>NAMA PEMINJAM</th>
                             <th>PETUGAS ASET GA</th>
                             <th>NAMA RUANGAN</th>
+                            {{-- <th>GUDANG</th> --}}
                             <th>DESKRIPSI</th>
                             <th>TANGGAL PINJAM</th>
                             <th>JATUH TEMPO</th>
@@ -33,8 +34,9 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$rp->kode_peminjaman}}</td>
                             <td>{{Auth::user()->name}}</td>
-                            <td>{{$rp->petugas}}</td>
+                            <td>{{$rp->admin->name}}</td>
                             <td>{{$rp->ruangan->kode_ruangan}} - {{$rp->ruangan->nama_ruangan}}</td>
+                            {{-- <td>{{$rp->gudang->nama_gedung}}</td> --}}
                             <td>{{$rp->deskripsi}}</td>
                             <td>{{$rp->tanggal_pinjam}}</td>
                             <td>{{$rp->tanggal_selesai}}</td>

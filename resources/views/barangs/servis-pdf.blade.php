@@ -51,6 +51,7 @@
             <th>No</th>
             <th>KODE SERVIS</th>
             <th>NAMA BARANG</th>
+            <th>LOKASI</th>
             <th>DESKRIPSI</th>
             <th>NAMA PETUGAS</th>
             <th>TANGGAL SERVIS</th>

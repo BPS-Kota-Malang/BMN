@@ -19,6 +19,8 @@
                             <th>NAMA BARANG</th>
                             <!-- <th>MERK</th> -->
                             <th>KATEGORI</th>
+                            <th>LOKASI</th>
+                            <th>OWNER</th>
                             <!-- <th>HARGA BELI</th> -->
                             <!-- <th>JUMLAH</th>
                             <th>SATUAN</th> -->
@@ -33,6 +35,8 @@
                             <td>{{$b->kode_barang}}</td>
                             <td>{{$b->nama_barang}} ({{$b->merek->nama_merkbarang}})</td>
                             <td>{{$b->productcategory->nama_kategbarang}}</td>
+                            <td>{{$b->lokasi->nama_lokasibarang}} ({{$b->gudang->nama_gedung}})</td>
+                            <td>{{$b->departemen->nama_departemen}}</td>
                             <!-- <td>{{$b->harga_beli}}</td> -->
                             <!-- <td>{{$b->jumlah}}</td>
                             <td>{{$b->satuan}}</td> -->
@@ -46,7 +50,7 @@
                                 @elseif ($b->status->nama_statusbarang=='Dipinjam')
                                     <span class="badge bg-info">Dipinjam</span>
                                 @elseif ($b->status->nama_statusbarang=='Diservis')
-                                    <span class="badge bg-warning">Diservis</span>
+                                    <span class="badge bg-warning"">Diservis</span>
                                 @else ($b->status->nama_statusbarang=='Diajukan')
                                     <span class="badge bg-success">Diajukan</span>
                                 @endif

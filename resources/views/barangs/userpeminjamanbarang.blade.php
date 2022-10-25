@@ -27,7 +27,7 @@
                     <select class="form-select mb-3 shadow-none" name="petugas" id="id_barang">
                         <option selected="">Pilih Petugas...</option>
                         @foreach ($petugas as $p)
-                        <option value="{{ $p->id }}">{{ $p->name }}</option>
+                        <option value="{{ $p->id }}" >{{ $p->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -42,28 +42,17 @@
                     </select>
                 </div>
 
-
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="form-label" for="jm_barang"><b>Jumlah</b></label>
-                    <input type="text" class="form-control" id="jumlah" name="jumlah"
+                    <input type="text" class="form-control" id="jm_barang" name="jumlah"
                         placeholder="Input jumlah barang...">
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     <label class="form-label" for="nm_peminjam"><b>Deskripsi</b></label>
                     <input type="text" class="form-control" id="deskripsi" name="deskripsi"
                         placeholder="Input deskripsi keperluan...">
                 </div>
-                {{-- <div class="form-group">
-                    <label class="form-labe" for="nm_peminjam"><b>Kondisi Barang</b></label>
-                    <input type="text" class="form-control" id="kondisi_setelahdipinjam" name="kondisi_setelahdipinjam"
-                        placeholder="Input kondisi barang...">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="nm_peminjam"><b>catatan</b></label>
-                    <input type="text" class="form-control" id="catatan" name="catatan"
-                        placeholder="catatan...">
-                </div> --}}
 
                 <div class="form-group">
                     <label class="form-label" for="tgl_dipinjam"><b>Tanggal Pinjam</b></label>
@@ -71,24 +60,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="tanggal_pengembalian"><b>Tanggal Pengembalian</b></label>
-                    <input type="date" class="form-control" id="tgl_pengembalian" name="tanggal_pengembalian">
-                </div>
-
-                <div class="form-group">
                     <label class="form-label" for="tgl_kembali"><b>Jatuh Tempo</b></label>
                     <input type="date" class="form-control" id="tgl_kembali" name="tanggal_kembali">
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="kondisi_setelahdipinjam"><b>Status</b></label>
-                    <input type="text" class="form-control" name="kondisi_setelahdipinjam" name="kondisi_setelahdipinjam">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="catatan"><b>catatan</b></label>
-                    <input type="text" class="form-control" name="catatan" name="catatan">
-                </div>
-
                 <div class="form-group">
                     <label class="form-label" for="status"><b>Status</b></label>
                     <input type="text" class="form-control" name="status" value=diajukan readonly>

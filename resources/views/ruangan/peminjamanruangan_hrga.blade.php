@@ -4,7 +4,7 @@
 @section('content')
 <div class="col-sm-12">
     <div class="card">
-
+       
             <div class="card-header d-flex justify-content-between">
                 <div class="header-title">
                     <h4 class="card-title">Riwayat Peminjaman</h4>
@@ -19,6 +19,7 @@
                                 <th>KODE PINJAM</th>
                                 <th>NAMA PEMINJAM</th>
                                 <th>NAMA RUANGAN</th>
+                                <th>GUDANG</th>
                                 <th>DESKRIPSI</th>
                                 <th>TANGGAL PINJAM</th>
                                 <th>JATUH TEMPO</th>
@@ -34,6 +35,7 @@
                                 <td>{{$rp->kode_peminjaman}}</td>
                                 <td>{{$rp->nama_peminjam}}</td>
                                 <td>{{$rp->ruangan->kode_ruangan}} - {{$rp->ruangan->nama_ruangan}}</td>
+                                <td>{{$rp->gudang->nama_gedung}}</td>
                                 <td>{{$rp->deskripsi}}</td>
                                 <td>{{$rp->tanggal_pinjam}}</td>
                                 <td>{{$rp->tanggal_selesai}}</td>
@@ -59,7 +61,7 @@
                                     @if($rp->status=='disetujui')
                                     <div class="flex align-items-center list-user-action">
                                         @if($rp->tgl_selesai==null)
-
+                                     
                                         @endif
                                     @elseif($rp->status=='ditolak')
                                     @else($rp->status=='selesai')

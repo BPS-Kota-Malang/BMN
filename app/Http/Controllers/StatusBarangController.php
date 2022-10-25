@@ -41,7 +41,7 @@ class StatusBarangController extends Controller
         else{
             $kd = "0001";
         }
-
+       
         return view('barangs.addstatus', compact('kd'));
     }
 
@@ -123,6 +123,10 @@ class StatusBarangController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware(function($request, $next){
+        if(Gate::allows('statusbarang')) return $next($request);
+        abort(403, 'Anda tidak memiliki cukup hak akses!');
+        });
     }
 }
