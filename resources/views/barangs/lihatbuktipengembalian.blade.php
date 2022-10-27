@@ -23,16 +23,6 @@
                         <td>:</td>
                         <td>{{ $pengembalian->barang->kode_barang }} - {{ $pengembalian->barang->nama_barang }} ({{ $pengembalian->merk->nama_merkbarang }})</td>
                     </tr>
-                    {{-- <tr>
-                        <td>Lokasi Barang</td>
-                        <td>:</td>
-                        <td>{{$pengembalian->lokasi->nama_lokasibarang}} ({{$pengembalian->gudang->nama_gedung}})</td>
-                    </tr>
-                    <tr>
-                        <td>Milik</td>
-                        <td>:</td>
-                        <td>{{$pengembalian->departemen->nama_departemen}}</td>
-                    </tr> --}}
                     <tr>
                         <td>Keperluan</td>
                         <td>:</td>
@@ -41,7 +31,7 @@
                     <tr>
                         <td>Petugas Penanggung Jawab Aset IT</td>
                         <td>:</td>
-                        <td>{{ $pengembalian->admin->name }}</td>
+                        <td>{{ $pengembalian->petugas }}</td>
                     </tr>
                     <tr>
                         <td>Tanggal Pinjam</td>

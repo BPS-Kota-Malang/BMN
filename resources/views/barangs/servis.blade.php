@@ -21,7 +21,6 @@
                             <th>NO</th>
                             <th>KODE SERVIS</th>
                             <th>NAMA BARANG</th>
-                            <th>LOKASI</th>
                             <th>DESKRIPSI</th>
                             <th>NAMA PETUGAS</th>
                             <th>TANGGAL SERVIS</th>
@@ -34,8 +33,7 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$s->kode_servis}}</td>
-                            <td>{{$s->barang->kode_barang}} - {{$s->barang->nama_barang}} ({{$s->merk->nama_merkbarang}})</td>
-                            <td>{{$s->lokasi->nama_lokasibarang}} ({{$s->gudang->nama_gedung}})</td>
+                            <td>{{$s->barang->kode_barang}} - {{$s->barang->nama_barang}}</td>
                             <td>{{$s->deskripsi}}</td>
                             <td>{{$s->nama_petugas}}</td>
                             <td>{{$s->tanggal_servis}}</td>

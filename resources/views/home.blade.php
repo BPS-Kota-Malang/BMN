@@ -2,7 +2,7 @@
 @section('title','Dashboard')
 
 @section('content')
-@can('dashboard')
+
 <div class="col-md-12 col-lg-12">
     <div class="row row-cols-1">
         <div class="overflow-hidden d-slider1 ">
@@ -19,23 +19,7 @@
                             </div>
                             <div class="progress-detail">
                                 <p class="mb-2">Barang</p>
-                                <h4 class="counter">{{ $barang }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="800">
-                    <div class="card-body">
-                        <div class="progress-widget">
-                            <div class="border rounded p-3 bg-soft-primary">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M9.5,13.09L10.91,14.5L6.41,19H10V21H3V14H5V17.59L9.5,13.09M10.91,9.5L9.5,10.91L5,6.41V10H3V3H10V5H6.41L10.91,9.5M14.5,13.09L19,17.59V14H21V21H14V19H17.59L13.09,14.5L14.5,13.09M13.09,9.5L17.59,5H14V3H21V10H19V6.41L14.5,10.91L13.09,9.5Z" />
-                                </svg>
-                            </div>
-                            <div class="progress-detail">
-                                <p class="mb-2">Lokasi</p>
-                                <h4 class="counter">{{ $lokasi }}</h4>
+                                <h4 class="counter">{{ $barang}}</h4>
                             </div>
                         </div>
                     </div>
@@ -52,22 +36,6 @@
                             <div class="progress-detail">
                                 <p class="mb-2">Ruangan</p>
                                 <h4 class="counter">{{ $ruangan }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="swiper-slide card card-slide" data-aos="fade-up" data-aos-delay="1000">
-                    <div class="card-body">
-                        <div class="progress-widget">
-                            <div class="border rounded p-3 bg-soft-primary me-3">
-                                <svg width="20" height="20" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 3H5A2 2 0 0 0 3 5V19A2 2 0 0 0 5 21H19A2 2 0 0 0 21 19V5A2 2 0 0 0 19 3M5 19V17H8.13A4.13 4.13 0 0 0 9.4 19M19 19H14.6A4.13 4.13 0 0 0 15.87 17H19M19 15H14V16A2 2 0 0 1 10 16V15H5V5H19Z" />
-                                </svg>
-                            </div>
-                            <div class="progress-detail">
-                                <p class="mb-2">Gudang</p>
-                                <h4 class="counter">{{ $gudang }}</h4>
                             </div>
                         </div>
                     </div>
@@ -145,8 +113,6 @@
                             <th>NAMA PEMINJAM</th>
                             <th>NAMA BARANG</th>
                             <!-- <th>MERK</th> -->
-                            <th>LOKASI</th>
-                            <th>MILIK</th>
                             <!-- <th>JUMLAH</th> -->
                             <th>DESKRIPSI</th>
                             <th>TANGGAL PINJAM</th>
@@ -164,8 +130,6 @@
                             <td>{{$rp->nama_peminjam}}</td>
                             <td>{{$rp->barang->kode_barang}} - {{$rp->barang->nama_barang}}
                                 ({{$rp->merk->nama_merkbarang}})</td>
-                            <td>{{$rp->lokasi->nama_lokasibarang}} ({{$rp->gudang->nama_gedung}})</td>
-                            <td>{{$rp->departemen->nama_departemen}}</td>
                             <!-- <td>{{$rp->jumlah}}</td> -->
                             <td>{{$rp->deskripsi}}</td>
                             <td>{{$rp->tanggal_pinjam}}</td>
@@ -237,6 +201,6 @@
 </div>
 </div>
 
-@endcan
+
 
 @endsection

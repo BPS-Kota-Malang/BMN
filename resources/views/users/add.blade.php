@@ -61,21 +61,24 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label"><b>Role</b></label>
-                    <select class="form-select mb-3 shadow-none" name="role" id="nm_user">
+                    <select class="form-select mb-3 shadow-none" name="role" id="role">
                         <option selected="">Role...</option>
                         <?php
                                     $user = DB::table('users')->get();
                                 ?>
                         @foreach ($user as $item)
-                        <option value="{{ $item->role }}">{{ $item->role }}</option>
+                        <option value="{{ $item->id }}">{{ $item->role }}</option>
                         @endforeach
                     </select>
                 </div>
                 {{-- <div class="form-group">
+                    <label><h4>Add image</h4></label>
+                    <input type="file" class="form-control" required name="image">
+                  </div> --}}
+                {{-- <div class="form-group">
                     <label class="form-label" for="nm_user"><b>Role</b></label>
-                    <input type="text" class="form-control" id="nm_user" name="role" "
+                    <input type="text" class="form-control" id="nm_user" name="role"
                         placeholder="Input role...">
-
                 </div> --}}
                 <br><br>
                 <button type="submit" class="btn btn-primary">Tambahkan</button>

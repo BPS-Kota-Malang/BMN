@@ -6,10 +6,8 @@ use App\Models\Product;
 use App\Models\BorrowProduct;
 use App\Models\ProductCategory;
 use App\Models\MerkProduct;
-// use App\Models\LocationProduct;
-// use App\Models\Department;
 use App\Models\StatusProduct;
-// use App\Models\Building;
+use App\Models\Kondisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use PDF;
@@ -17,6 +15,10 @@ use DB;
 
 class BarangController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,10 +45,8 @@ class BarangController extends Controller
     {
         $prodcat = ProductCategory::all();
         $merk = MerkProduct::all();
-        // $lokasi = LocationProduct::all();
-        // $gudang = Building::all();
-        // $departemen = Department::all();
         $status = StatusProduct::all();
+        $kondisi = Kondisi::all();
 
 
         $q = DB::table('products')->select(DB::raw('MAX(RIGHT(kode_barang,4)) as kode'));
@@ -63,8 +63,7 @@ class BarangController extends Controller
             $kd = "0001";
         }
 
-        return view ('barangs.addbarang', compact('prodcat', 'merk','status', 'kd'));
-        // return view ('barangs.addbarang', compact('prodcat', 'merk', 'lokasi', 'gudang', 'departemen', 'status', 'kd'));
+        return view ('barangs.addbarang', compact('prodcat', 'merk', 'status','kondisi', 'kd'));
     }
 
     /**
@@ -80,12 +79,10 @@ class BarangController extends Controller
             'nama_barang' => $request->nama_barang,
             'id_merkproduct' => $request->id_merkbarang,
             'id_productcategory' => $request->id_kategoribarang,
-            // 'id_lokasiproduct' => $request->id_lokasibarang,
-            // 'id_gudang' => $request->id_gudang,
-            // 'id_department' => $request->id_departemen,
             // 'harga_beli' => $request->hargabeli,
             'jumlah' => $request->jumlah,
-            'satuan' => $request->satuan,
+            // 'satuan' => $request->satuan,
+            'keterangan'=>$request->keterangan,
             'id_statusproduct' => $request->id_statusbarang,
             'tanggal_input' => $request->tglinput,
 
@@ -113,18 +110,15 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        $prod = Product::with('productcategory', 'merek', 'status' )->find($id);
-        // $prod = Product::with('productcategory', 'merek','lokasi', 'departemen', 'status', 'gudang')->find($id);
+        $prod = Product::with('productcategory', 'merek', 'status', )->find($id);
         $prodcat = ProductCategory::all();
         $merk = MerkProduct::all();
-        // $lokasi = LocationProduct::all();
-        // $departemen = Department::all();
+
         $status = StatusProduct::all();
-        // $gudang = Building::all();
 
 
-        return view ('barangs.editbarang', compact('prod', 'prodcat', 'merk', 'status'));
-        // return view ('barangs.editbarang', compact('prod', 'prodcat', 'merk', 'lokasi', 'departemen', 'status','gudang'));
+
+        return view ('barangs.editbarang', compact('prod', 'prodcat', 'merk', 'status',));
     }
 
     /**
@@ -137,17 +131,14 @@ class BarangController extends Controller
     public function update(Request $request, $id)
     {
         $prod = Product::with('productcategory', 'merek', 'status')->find($id);
-        // $prod = Product::with('productcategory', 'merek','lokasi', 'departemen', 'status')->find($id);
         $prod->kode_barang=$request->kode_barang;
         $prod->nama_barang=$request->nama_barang;
         $prod->id_merkproduct=$request->id_merkbarang;
         $prod->id_productcategory=$request->id_kategoribarang;
-        // $prod->id_lokasiproduct=$request->id_lokasibarang;
-        // $prod->id_gudang=$request->id_gudang;
-        // $prod->id_department=$request->id_departemen;
+
         // $prod->harga_beli=$request->hargabeli;
         $prod->jumlah=$request->jumlah;
-        $prod->satuan=$request->satuan;
+        // $prod->satuan=$request->satuan;
         $prod->id_statusproduct=$request->id_statusbarang;
         $prod->tanggal_input=$request->tglinput;
         $prod->save();
@@ -166,7 +157,6 @@ class BarangController extends Controller
     public function destroy($id)
     {
         $prod = Product::with('productcategory', 'merek', 'status')->find($id);
-        // $prod = Product::with('productcategory', 'merek','lokasi', 'departemen', 'status')->find($id);
         $prod->delete();
         return redirect()->route('barang.index');
     }
@@ -180,14 +170,14 @@ class BarangController extends Controller
         return $pdf->stream('daftar-barang.pdf');
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware(function($request, $next){
-        if(Gate::allows('barang')) return $next($request);
-        abort(403, 'Anda tidak memiliki cukup hak akses!');
-        });
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware(function($request, $next){
+    //     if(Gate::allows('barang')) return $next($request);
+    //     abort(403, 'Anda tidak memiliki cukup hak akses!');
+    //     });
 
 
-    }
+    // }
 }

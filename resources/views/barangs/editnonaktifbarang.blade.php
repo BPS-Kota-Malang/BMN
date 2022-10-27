@@ -36,16 +36,6 @@
                             <option value="{{ $m->id }}">{{ $m->nama_merkbarang }}</option>
                             @endforeach
                         </select>
-                        <div class="form-group">
-                            <label class="form-label"><b>Lokasi Barang</b></label>
-                            <select class="form-select mb-3 shadow-none" name="id_lokasi" id="id_lokasi">
-                                <option disabled value>Pilih Lokasi...</option>
-                                <option value="{{ $nonaktif->id_lokasi }}">{{ $nonaktif->lokasi->nama_lokasibarang }}
-                                </option>
-                                @foreach ($lokasi as $l)
-                                <option value="{{ $l->id }}">{{ $l->nama_lokasibarang }}</option>
-                                @endforeach
-                            </select>
                             <div class="form-group">
                                 <label class="form-label"><b>Status Barang</b></label>
                                 <select class="form-select mb-3 shadow-none" name="id_status" id="id_lokasi">

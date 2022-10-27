@@ -3,27 +3,27 @@
 
 <head>
     <style>
-    #serviceproduct {
+    #statusbarang {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
         width: 100%;
     }
 
-    #serviceproduct td,
-    #serviceproduct th {
+    #statusbarang td,
+    #statusbarang th {
         border: 1px solid #ddd;
         padding: 8px;
     }
 
-    #serviceproduct tr:nth-child(even) {
+    #statusbarang tr:nth-child(even) {
         background-color: #f2f2f2;
     }
 
-    #serviceproduct tr:hover {
+    #dstatusbarang tr:hover {
         background-color: #ddd;
     }
 
-    #serviceproduct th {
+    #statusbarang th {
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
@@ -43,30 +43,23 @@
 <body>
 
     <center>
-        <h2>Laporan Data Barang di Servis</h2>
+        <h2>Laporan Daftar Kondisi Barang</h2>
     </center>
 
-    <table id="serviceproduct">
+    <table id="statusbarang">
         <tr>
-            <th>No</th>
-            <th>KODE SERVIS</th>
-            <th>NAMA BARANG</th>
-            <th>DESKRIPSI</th>
-            <th>NAMA PETUGAS</th>
-            <th>TANGGAL SERVIS</th>
-            <th>TANGGAL KEMBALI</th>
+            <th>NO</th>
+            <th>KODE KONDISI</th>
+            <th>KONDISI</th>
+            <th>KATEGORI</th>
         </tr>
         <tr>
-            @foreach($servisbarang as $s)
+            @foreach($kondisi as $k)
         <tr>
             <td>{{$loop->iteration}}</td>
-            <td>{{$s->kode_servis}}</td>
-            <td>{{$s->barang->kode_barang }} - {{ $s->barang->nama_barang }} ({{ $s->merk->nama_merkbarang }})</td>
-            <td>{{$s->lokasi->nama_lokasibarang}} ({{$s->gudang->nama_gedung}})</td>
-            <td>{{$s->deskripsi}}</td>
-            <td>{{$s->nama_petugas}}</td>
-            <td>{{$s->tanggal_servis}}</td>
-            <td>{{$s->tanggal_kembali}}</td>
+            <td>{{$k->kode_kondisi}}</td>
+            <td>{{$k->nama_kondisibarang}}</td>
+            <td>{{$k->kategori}}</td>
         </tr>
         @endforeach
         </tr>

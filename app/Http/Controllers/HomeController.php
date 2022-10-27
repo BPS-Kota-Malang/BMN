@@ -6,8 +6,6 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Room;
 use App\Models\User;
-use App\Models\Building;
-use App\Models\LocationProduct;
 use App\Models\BorrowProduct;
 use App\Models\BorrowRoom;
 use Carbon\Carbon;
@@ -37,16 +35,14 @@ class HomeController extends Controller
     {
         $startDate = Carbon::today();
         $endDate = Carbon::today()->addDays(7);
-        $peminjaman = BorrowProduct::whereBetween('tanggal_kembali', [$startDate, $endDate])->where('status', '=' , 'disetujui')->where('petugas','=', Auth::user()->id)->get();
+        $peminjaman = BorrowProduct::whereBetween('tanggal_pengembalian', [$startDate, $endDate])->where('status', '=' , 'disetujui')->where('petugas','=', Auth::user()->id)->get();
 
        $barang = Product::count();
        $ruangan = Room::count();
-       $lokasi = LocationProduct::count();
-       $gudang = Building::count();
        $user = User::count();
        $pembarang = BorrowProduct::count();
        $pemruangan = BorrowRoom::count();
-       
-        return view('/home', compact('barang', 'ruangan', 'lokasi','gudang','user','pembarang','pemruangan','peminjaman'));
+
+        return view('/home', compact('barang', 'ruangan','user','pembarang','pemruangan','peminjaman'));
     }
 }

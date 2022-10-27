@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\RoomCategory;
-use App\Models\Building;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use PDF;
@@ -59,8 +58,7 @@ class RuanganController extends Controller
         }
 
         $roomcat = RoomCategory::all();
-        // $building = Building::all();
-        return view ('ruangan.add', compact('roomcat',  'kd'));
+        return view ('ruangan.add', compact('roomcat', 'kd'));
     }
 
     /**
@@ -76,7 +74,6 @@ class RuanganController extends Controller
             'nama_ruangan' => $request->nama_ruangan,
             'status_ruangan' => $request->status_ruangan,
             'id_roomcategory' => $request->id_kategoriruangan,
-            // 'id_building' => $request->id_gudang,
         ]);
 
         return redirect()->route('ruangan.index')->with('toast_success', 'Data Berhasil Tersimpan !');
@@ -102,7 +99,6 @@ class RuanganController extends Controller
     public function edit($id)
     {
         $roomcat = RoomCategory::all();
-        // $gudang = Building::all();
         $room = Room::with('roomcategory')->find($id);
 
         return view ('ruangan.edit', compact('room', 'roomcat'));
@@ -117,12 +113,11 @@ class RuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $room = Room::with('roomcategory','building')->find($id);
+        $room = Room::with('roomcategory')->find($id);
         $room->kode_ruangan=$request->kode_ruangan;
         $room->nama_ruangan=$request->nama_ruangan;
         $room->status_ruangan=$request->status_ruangan;
         $room->id_roomcategory=$request->id_kategoriruangan;
-        // $room->id_building=$request->id_gudang;
         $room->save();
         return redirect('/ruangan');
     }
@@ -151,10 +146,6 @@ class RuanganController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('auth');
-        $this->middleware(function($request, $next){
-        if(Gate::allows('ruangan')) return $next($request);
-        abort(403, 'Anda tidak memiliki cukup hak akses!');
-        });
+        $this->middleware('auth');
     }
 }

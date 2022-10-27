@@ -36,7 +36,7 @@
                     <select class="form-select mb-3 shadow-none" name="nama_ruangan" id="id_ruangan">
                         <option selected="">Pilih Ruangan...</option>
                         @foreach ($ruangan as $r)
-                        <option value="{{ $r->id }}">{{ $r->nama_ruangan }} - {{$r->building->nama_gedung}} </option>
+                        <option value="{{ $r->id }}">{{ $r->nama_ruangan }} </option>
                         @endforeach
                     </select>
                 </div>

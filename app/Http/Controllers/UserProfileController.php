@@ -48,7 +48,7 @@ class UserProfileController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -95,7 +95,7 @@ class UserProfileController extends Controller
     	$user->alamat = $request->alamat;
     	$user->kontak=$request->kontak;
         $user->id_jabatan=$request->id_jabatan;
-        
+
         if($request->hasFile('image'))
         {
             $request->file('image')->move('imageuser/', $request->file('image')->getClientOriginalName());
@@ -115,6 +115,6 @@ class UserProfileController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 }

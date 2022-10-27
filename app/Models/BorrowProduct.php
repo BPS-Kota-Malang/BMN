@@ -10,7 +10,10 @@ class BorrowProduct extends Model
     use HasFactory;
     protected $guarded=['id'];
     protected $table = "borrow_products";
-    protected $fillable= ['kode_peminjaman','nama_peminjam', 'petugas', 'deskripsi', 'tanggal_pinjam', 'tanggal_kembali','tanggal_pengembalian','status', 'kondisi_setelahdipinjam','catatan','bukti_pengembalian','id_product', 'id_merk'];
+    // protected $fillable= ['kode_peminjaman','nama_peminjam', 'petugas','jumlah', 'deskripsi', 'tanggal_pinjam', 'tanggal_kembali','tanggal_pengembalian','status', 'bukti_pengembalian','id_product',  'id_merk',  'id_user',];
+    // protected $fillable= ['kode_peminjaman','nama_peminjam', 'jumlah','petugas', 'deskripsi', 'tanggal_pinjam', 'tanggal_pengembalian','status', 'kondisi_setelahdipinjam','catatan','bukti_pengembalian','id_product', 'id_merk',  'id_user'];
+    protected $fillable= ['kode_peminjaman','nama_peminjam', 'petugas', 'deskripsi', 'tanggal_pinjam', 'tanggal_kembali','tanggal_pengembalian','status', 'kondisi_setelahdipinjam','catatan','bukti_pengembalian','id_product', 'id_merk','id_user'];
+
 
     public function barang()
     {
@@ -24,33 +27,18 @@ class BorrowProduct extends Model
 
     }
 
-    public function lokasi()
+
+
+
+    public function user()
     {
-        return $this->belongsTo(LocationProduct::class, 'id_lokasi');
+        return $this->belongsTo(User::class, 'id_user');
 
     }
 
-    // public function departemen()
-    // {
-    //     return $this->belongsTo(Department::class, 'id_department');
-
-    // }
-
-    // public function gudang()
-    // {
-    //     return $this->belongsTo(Building::class, 'id_gudang');
-
-    // }
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'id_user');
-
-    // }
-
     public function admin()
     {
-        return $this->belongsTo(User::class, 'petugas');
+        return $this->belongsTo(User::class, ' petugas');
 
     }
 

@@ -21,10 +21,6 @@ class CreateServiceProductsTable extends Migration
             $table->date('tanggal_kembali');
             $table->unsignedBigInteger('id_product');
             $table->foreign('id_product')->references('id')->on('products');
-            $table->unsignedBigInteger('id_lokasi');
-            $table->foreign('id_lokasi')->references('id')->on('location_products');
-            $table->unsignedBigInteger('id_gudang');
-            $table->foreign('id_gudang')->references('id')->on('buildings');
             $table->timestamps();
         });
     }

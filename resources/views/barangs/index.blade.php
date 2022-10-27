@@ -103,11 +103,9 @@
             </div>
         </div>
         <div class="card-body">
-
             <form action="{{route('barang.create')}}" method="GET">
                 <button type="submit" class="btn btn-success">Tambah Barang</button>
             </form>
-           
             <br><br>
             <div class="table-responsive">
                 <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -118,11 +116,9 @@
                             <th>NAMA BARANG</th>
                             <!-- <th>MERK</th> -->
                             <th>KATEGORI</th>
-                            {{-- <th>LOKASI</th>
-                            <th>OWNER</th> --}}
                             <!-- <th>HARGA BELI</th> -->
-                            <!-- <th>JUMLAH</th>
-                            <th>SATUAN</th> -->
+                             <!--<th>JUMLAH</th>-->
+                           {{-- <-- <th>SATUAN</th> --> --}}
                             <th>STATUS</th>
                             <th>TANGGAL INPUT</th>
                             <th>AKSI</th>
@@ -135,11 +131,10 @@
                             <td>{{$b->kode_barang}}</td>
                             <td>{{$b->nama_barang}} ({{$b->merek->nama_merkbarang}})</td>
                             <td>{{$b->productcategory->nama_kategbarang}}</td>
-                            {{-- <!--<td>{{$b->lokasi->nama_lokasibarang}} ({{$b->gudang->nama_gedung}})</td>-->
-                            <!--<td>{{$b->departemen->nama_departemen}}</td>--> --}}
+
                             <!-- <td>{{$b->harga_beli}}</td> -->
-                            <!-- <td>{{$b->jumlah}}</td>
-                            <td>{{$b->satuan}}</td> -->
+                            <!--<td>{{$b->jumlah}}</td>-->
+                            {{-- <td>{{$b->satuan}}</td> --> --}}
                             <td>
                                 @if ($b->status->nama_statusbarang=='Tersedia')
                                     <span class="badge bg-primary">Tersedia</span>
@@ -150,7 +145,7 @@
                                 @elseif ($b->status->nama_statusbarang=='Dipinjam')
                                     <span class="badge bg-info">Dipinjam</span>
                                 @elseif ($b->status->nama_statusbarang=='Diservis')
-                                    <span class="badge bg-warning"">Diservis</span>
+                                    <span class="badge bg-warning">Diservis</span>
                                 @else ($b->status->nama_statusbarang=='Diajukan')
                                     <span class="badge bg-success">Diajukan</span>
                                 @endif

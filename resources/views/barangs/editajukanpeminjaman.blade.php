@@ -28,7 +28,7 @@
                     <label class="form-label" for="nm_barang"><b>Petugas Aset IT</b></label>
                     <select class="form-select mb-3 shadow-none" name="petugas" id="id_barang">
                         <option disabled value>Pilih Petugas...</option>
-                        <option value="{{ $reqpinjam->petugas }}">{{ $reqpinjam->admin->name }}</option>
+                        <option value="{{ $reqpinjam->petugas }}">{{ $reqpinjam->petugas }}</option>
                         @foreach ($petugas as $p)
                         <option value="{{ $p->id }}">{{ $p->name }}</option>
                         @endforeach
@@ -37,7 +37,7 @@
                 <input type="hidden" name="barang_lama" value={{$reqpinjam->id_product}}>
                 <div class="form-group">
                     <label class="form-label"><b>Nama Barang</b></label>
-                   
+
                     <select class="form-select mb-3 shadow-none" name="nama_barang" id="id_barang">
                         <option disabled value>Pilih Barang...</option>
                         <option value="{{ $reqpinjam->id_product }}">{{ $reqpinjam->barang->kode_barang }} - {{ $reqpinjam->barang->nama_barang }} ({{$reqpinjam->merk->nama_merkbarang}})</option>
@@ -46,7 +46,7 @@
                         @endforeach
                     </select>
                 </div>
-               
+
                 <!-- <div class="form-group">
                     <label class="form-label" for="jm_barang"><b>Jumlah</b></label>
                     <input type="text" class="form-control" id="jm_barang" name="jumlah"

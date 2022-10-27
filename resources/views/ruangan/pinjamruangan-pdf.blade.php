@@ -45,7 +45,6 @@
       <th>KODE PEMINJAMAN</th>
       <th>NAMA PEMINJAM</th>
       <th>NAMA RUANGAN</th>
-      <th>GUDANG</th>
       <th>DESKRIPSI</th>
       <th>TANGGAL PINJAM</th>
       <th>JATUH TEMPO</th>
@@ -59,7 +58,6 @@
           <td>{{$rp->kode_peminjaman}}</td>
           <td>{{$rp->nama_peminjam}}</td>
           <td>{{$rp->ruangan->kode_ruangan}} - {{$rp->ruangan->nama_ruangan}}</td>
-          <td>{{$rp->gudang->nama_gedung}}</td>
           <td>{{$rp->deskripsi}}</td>
           <td>{{$rp->tanggal_pinjam}}</td>
           <td>{{$rp->tanggal_selesai}}</td>

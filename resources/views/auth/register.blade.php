@@ -55,8 +55,7 @@
                                   <rect x="10.5366" y="16.3945" width="16" height="4" rx="2" transform="rotate(45 10.5366 16.3945)" fill="currentColor"/>
                                   <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
                               </svg>
-                              <!--logo End-->
-                              <h4 class="logo-title ms-3">Peminjaman BMN</h4>
+                              <!--logo End-->                              <h4 class="logo-title ms-3">PT. Tempu Rejo</h4>
                            </a>
                            <h2 class="mb-2 text-center">Sign Up</h2>
                            <p class="text-center">Create your account.</p>

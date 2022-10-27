@@ -27,7 +27,7 @@
                     <label class="form-label" for="nm_petugas"><b>Petugas Aset GA</b></label>
                     <select class="form-select mb-3 shadow-none" name="petugas" id="id_ruangan">
                         <option disabled value>Pilih Petugas...</option>
-                        <option value="{{ $reqpinjam->petugas }}">{{ $reqpinjam->admin->name }}</option>
+                        <option value="{{ $reqpinjam->petugas }}">{{ $reqpinjam->petugas }}</option>
                         @foreach ($petugas as $p)
                         <option value="{{ $p->id }}">{{ $p->name }}</option>
                         @endforeach
@@ -38,9 +38,9 @@
                     <label class="form-label"><b>Nama Ruangan</b></label>
                     <select class="form-select mb-3 shadow-none" name="nama_ruangan" id="id_ruangan">
                         <option disabled="">Pilih Ruangan...</option>
-                        <option value="{{ $reqpinjam->id_room }}">{{ $reqpinjam->ruangan->nama_ruangan }} - {{ $reqpinjam->gudang->nama_gedung }}</option>
+                        <option value="{{ $reqpinjam->id_room }}">{{ $reqpinjam->ruangan->nama_ruangan }} </option>
                         @foreach ($ruangan as $r)
-                        <option value="{{ $r->id }}">{{ $r->nama_ruangan }} - {{ $r->building->nama_gedung }} </option>
+                        <option value="{{ $r->id }}">{{ $r->nama_ruangan }} </option>
                         @endforeach
                     </select>
                 </div>

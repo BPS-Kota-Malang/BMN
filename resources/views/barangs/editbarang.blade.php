@@ -43,50 +43,23 @@
                             @endforeach
                         </select>
                         <div class="form-group">
-                            <label class="form-label"><b>Lokasi Barang</b></label>
-                            <select class="form-select mb-3 shadow-none" name="id_lokasibarang" id="id_lokasibarang">
-                                <option disabled value>Pilih Lokasi...</option>
-                                <option value="{{ $prod->id_lokasiproduct }}">{{ $prod->lokasi->nama_lokasibarang }}
-                                </option>
-                                @foreach ($lokasi as $l)
-                                <option value="{{ $l->id }}">{{ $l->nama_lokasibarang }}</option>
-                                @endforeach
-                            </select>
-                        <div class="form-group">
-                            <label class="form-label"><b>Gudang</b></label>
-                            <select class="form-select mb-3 shadow-none" name="id_gudang" id="id_lokasibarang">
-                                <option disabled value>Pilih Lokasi...</option>
-                                <option value="{{ $prod->id_gudang }}">{{ $prod->gudang->nama_gedung }}
-                                </option>
-                                @foreach ($gudang as $g)
-                                <option value="{{ $g->id }}">{{ $g->nama_gedung }}</option>
-                                @endforeach
-                            </select>
-                            <div class="form-group">
-                                <label class="form-label"><b>Milik</b></label>
-                                <select class="form-select mb-3 shadow-none" name="id_departemen" id="id_departemen">
-                                    <option disabled value>Pilih Departemen...</option>
-                                    <option value="{{ $prod->id_department }}">{{ $prod->departemen->nama_departemen }}
-                                    </option>
-                                    @foreach ($departemen as $d)
-                                    <option value="{{ $d->id }}">{{ $d->nama_departemen }}</option>
-                                    @endforeach
-                                </select>
+
+
                                 <!-- <div class="form-group">
                                     <label class="form-label" for="hb_barang"><b>Harga Beli</b></label>
                                     <input type="text" class="form-control" id="hargabeli" name="hargabeli"
                                         value="{{ $prod->harga_beli }}" placeholder="Input harga barang...">
                                 </div> -->
-                                <!-- <div class="form-group">
+                                 <div class="form-group">
                                     <label class="form-label" for="jm_barang"><b>Jumlah</b></label>
                                     <input type="text" class="form-control" id="jumlah" name="jumlah"
                                         value="{{ $prod->jumlah }}" placeholder="Input jumlah barang...">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label class="form-label" for="jm_barang"><b>Satuan</b></label>
                                     <input type="text" class="form-control" id="satuan" name="satuan"
                                         value="{{ $prod->satuan }}" placeholder="Input satuan barang...">
-                                </div> -->
+                                </div> --> --}}
                                 <div class="form-group">
                                     <label class="form-label"><b>Status</b></label>
                                     <select class="form-select mb-3 shadow-none" name="id_statusbarang"

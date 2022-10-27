@@ -1,39 +1,43 @@
 @extends('layouts.index')
-@section('title','Data Departemen')
+@section('title','Kondisi Barang')
 
 @section('content')
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <div class="header-title">
-                <h4 class="card-title">Daftar Departemen</h4>
+                <h4 class="card-title">Kondisi Barang</h4>
             </div>
         </div>
         <div class="card-body">
-            <!-- <form action="{{route('departemen.create')}}" method="GET">
-                <button type="submit" class="btn btn-success">Tambah Departemen</button>
+            <form action="{{route('kondisibarang.create')}}" method="GET">
+                <button type="submit" class="btn btn-success">Tambah Kondisi</button>
             </form>
-            <br><br> -->
+            <br><br>
             <div class="table-responsive">
                 <table id="datatable" class="table table-striped" data-toggle="data-table">
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>KODE DEPARTEMEN</th>
-                            <th>NAMA DEPARTEMEN</th>
-                            <!-- <th>AKSI</th> -->
+                            <th>Kode Kondisi</th>
+                            <th>Status</th>
+                            <th>Jenis Kategori</th>
+                            <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($department as $dp)
+                        @foreach($kondisi as $k)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$dp->kode_departemen}}</td>
-                            <td>{{$dp->nama_departemen}}</td>
-                            <!-- <td>
+                            <td>{{ $k->kode_kondisi }}</td>
+                            <td>{{$k->jenis_kondisi}}</td>
+                            <td>{{ $k->status->nama_statusbarang}}</td>
+
+                            <td>
                                 <div class="flex align-items-center list-user-action">
-                                    <a href="{{ route('departemen.edit', $dp->id) }}"
-                                        class="btn btn-sm btn-icon btn-success">
+                                    <a class="btn btn-sm btn-icon btn-success" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="Edit"
+                                        href="{{ route('kondisibarang.edit', $k->id) }}">
                                         <span class="btn-inner">
                                             <svg width="20" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -52,11 +56,11 @@
                                         </span>
                                     </a>
                                     <a class="btn btn-sm btn-icon">
-                                        <form action="{{ route('departemen.destroy', $dp->id) }}" method="POST">
+                                        <form action="{{ route('kondisibarang.destroy', $k->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-sm btn-icon btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete this item?')">
+                                                onclick="return confirm('Are you sure you want to delete this item')">
                                                 <span class="btn-inner">
                                                     <svg width="20" viewBox="0 0 24 24" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
@@ -77,11 +81,13 @@
                                         </form>
                                     </a>
                                 </div>
-                            </td> -->
+                            </td>
                         </tr>
                         @endforeach
-                </table><br>
-                <a href="/cetak_departemen" button type="button" class="btn btn-primary">Print</button></a>
+
+                </table>
+                <br>
+                <a href="/cetak_kondisibarang" button type="button" class="btn btn-primary">Print</button></a>
             </div>
         </div>
     </div>

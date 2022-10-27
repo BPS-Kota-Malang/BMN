@@ -23,11 +23,9 @@ class CreateNonaktifProductsTable extends Migration
             $table->foreign('id_product')->references('id')->on('products');
             $table->unsignedBigInteger('id_status');
             $table->foreign('id_status')->references('id')->on('status_products');
-            $table->unsignedBigInteger('id_lokasi');
-            $table->foreign('id_lokasi')->references('id')->on('location_products');
             $table->unsignedBigInteger('id_merk');
             $table->foreign('id_merk')->references('id')->on('merk_products');
-            
+
         });
     }
 

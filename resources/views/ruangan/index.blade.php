@@ -22,7 +22,6 @@
                             <th>KODE RUANGAN</th>
                             <th>NAMA RUANGAN</th>
                             <th>KATEGORI</th>
-                            {{-- <th>GUDANG</th> --}}
                             <th>STATUS RUANGAN</th>
                             <th>AKSI</th>
                         </tr>
@@ -34,7 +33,6 @@
                             <td>{{$r->kode_ruangan}}</td>
                             <td>{{$r->nama_ruangan}}</td>
                             <td>{{$r->roomcategory->nama_kategruangan}}</td>
-                            {{-- <td>{{$r->building->nama_gedung}}</td> --}}
                             <td>
                                 @if ($r->status_ruangan=='Tersedia')
                                         <span class="badge bg-primary">Tersedia</span>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJabatanTable extends Migration
+class CreateKondisiProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateJabatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('jabatan', function (Blueprint $table) {
+        Schema::create('kondisi_products', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_jabatan');
-            $table->string('nama_jabatan');
+            $table->string('kode_kondisi');
+            $table->unsignedBigInteger('id_statusproduct');
+            $table->string('jenis_kondisi');
+            $table->foreign('id_statusproduct')->references('id')->on('status_products');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateJabatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jabatan');
+        Schema::dropIfExists('kondisi_product');
     }
 }

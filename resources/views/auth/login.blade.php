@@ -53,7 +53,7 @@
                                   <rect x="10.5562" y="-0.556152" width="28" height="4" rx="2" transform="rotate(45 10.5562 -0.556152)" fill="currentColor"/>
                               </svg>
                               <!--logo End-->
-                              <h4 class="logo-title ms-3">Peminjaman BMN</h4>
+                              <h4 class="logo-title ms-3">Bps Kota Malang</h4>
                            </a>
                            <h2 class="mb-2 text-center">Sign In</h2>
                            <p class="text-center">Login to stay connected.</p>

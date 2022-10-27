@@ -47,7 +47,6 @@
             <th>Kode Ruangan</th>
             <th>Nama Ruangan</th>
             <th>Kategori</th>
-            <th>Gudang</th>
         </tr>
         <tr>
             @foreach($ruanganrequestor as $r)
@@ -56,7 +55,6 @@
             <td>{{$r->kode_ruangan}}</td>
             <td>{{$r->nama_ruangan}}</td>
             <td>{{$r->roomcategory->nama_kategruangan}}</td>
-            <td>{{$r->building->nama_gedung}}</td>
         </tr>
         @endforeach
     </table>

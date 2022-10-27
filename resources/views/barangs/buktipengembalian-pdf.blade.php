@@ -54,19 +54,10 @@
                     {{ $pengembalianbarang->barang->nama_barang }} ({{ $pengembalianbarang->merk->nama_merkbarang }})
                 </td>
             </tr>
-            {{-- <tr>
-                <td>Lokasi Barang</td>
-                <td >: {{$pengembalianbarang->lokasi->nama_lokasibarang}}
-                    ({{$pengembalianbarang->gudang->nama_gedung}})</td>
-            </tr>
-            <tr>
-                <td>Milik</td>
-                <td >: {{$pengembalianbarang->departemen->nama_departemen}}</td>
-            </tr>
             <tr>
                 <td>Keperluan</td>
                 <td >: {{$pengembalianbarang->deskripsi}}</td>
-            </tr> --}}
+            </tr>
             <tr>
                 <td>Petugas Penanggung Jawab Aset IT</td>
                 <td >: {{ Auth::user()->name }}</td>
@@ -83,14 +74,14 @@
                 <td>Tanggal Pengembalian</td>
                 <td >: {{$pengembalianbarang->tanggal_pengembalian}}</td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td>Kondisi Barang Setelah Dipinjam</td>
                 <td >: {{ $pengembalianbarang->kondisi_setelahdipinjam }}</td>
             </tr>
             <tr>
                 <td>Catatan</td>
                 <td >: {{ $pengembalianbarang->catatan }}</td>
-            </tr>
+            </tr> --}}
             <!-- <tr>
                 <td>Bukti Pengembalian</td>
                 <td >: {{ $pengembalianbarang->bukti_pengembalian }}</td>

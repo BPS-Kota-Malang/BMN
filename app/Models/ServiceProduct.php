@@ -10,7 +10,7 @@ class ServiceProduct extends Model
     use HasFactory;
     protected $guarded=['id'];
     protected $table = "service_products";
-    protected $fillable= ['kode_servis','deskripsi', 'nama_petugas', 'tanggal_servis', 'tanggal_kembali', 'id_product', 'id_merk', 'id_lokasi','id_gudang','id_user'];
+    protected $fillable= ['kode_servis','deskripsi', 'nama_petugas', 'tanggal_servis', 'tanggal_kembali', 'id_product','id_user'];
 
 
 
@@ -22,16 +22,6 @@ class ServiceProduct extends Model
     public function merk()
     {
         return $this->belongsTo(MerkProduct::class, 'id_merk');
-    }
-
-    public function lokasi()
-    {
-        return $this->belongsTo(LocationProduct::class, 'id_lokasi');
-    }
-
-    public function gudang()
-    {
-        return $this->belongsTo(Building::class, 'id_gudang');
     }
 
 }

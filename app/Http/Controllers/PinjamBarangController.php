@@ -26,14 +26,14 @@ class PinjamBarangController extends Controller
      //tampilan halaman status peminjaman pada role "requestor"
     public function index()
     {
-
-        $reqpinjam=BorrowProduct::where('petugas', Auth::user()->id)->orderBy('id','desc')->get();
-        // $reqpinjam=BorrowProduct::where('id_user', Auth::user()->id)->orderBy('id','desc')->get();
+        // return $reqpinjam =BorrowProduct::where('petugas', Auth::user()->id)->orderBy('id','desc')->get();
+        // $reqpinjam=BorrowProduct::where('petugas', Auth::user()->id)->orderBy('id','desc')->get();
+        $reqpinjam=BorrowProduct::where('id_user', Auth::user()->id)->orderBy('id','desc')->get();
         return view('barangs.statuspeminjamanbarang', compact('reqpinjam'));
     }
 
     //tampilan halaman peminjaman pada role "approval"
-    public function index_approval()
+    public function index_pjbarang()
     {
 
         $reqpinjam=BorrowProduct::where('status','=','diajukan')->where('petugas','=', Auth::user()->id)->orderBy('id','desc')->get();
@@ -58,7 +58,7 @@ class PinjamBarangController extends Controller
     {
         //proses menampilkan daftar barang dengan status "tersedia" dan "diajukan"
         $barang = Product::where('id_statusproduct', '=' , 8)->get();
-        $petugas = User::where('role', '=' , 'approval')->get();
+        $petugas = User::where('role', '=' ,'pjbarang')->get();
 
         //membuat kode peminjaman barang
         $q = DB::table('borrow_products')->select(DB::raw('MAX(RIGHT(kode_peminjaman,4)) as kode'));
@@ -102,7 +102,7 @@ class PinjamBarangController extends Controller
             // 'id_lokasi' => $barang->id_lokasiproduct,
             // 'id_department' => $barang->id_department,
             // 'id_gudang' => $barang->id_gudang,
-            // 'id_user' => Auth::user()->id,
+            'id_user' => Auth::user()->id,
             // 'jumlah' => $request->jumlah,
             'deskripsi' => $request->deskripsi,
             'tanggal_pinjam' => $request->tanggal_pinjam,
@@ -143,7 +143,7 @@ class PinjamBarangController extends Controller
     {
         $reqpinjam=BorrowProduct::find($id);
         $barang = Product::where('id_statusproduct', '=' , 8)->get();
-        $petugas = User::where('role', '=' , 'approval')->get();
+        $petugas = User::where('role', '=' , 'pjbarang')->get();
 
         return view('barangs.editajukanpeminjaman', compact('reqpinjam','barang','petugas'));
     }
@@ -163,9 +163,9 @@ class PinjamBarangController extends Controller
         $reqpinjam = BorrowProduct::find($id);
         $reqpinjam->id_product=$request->nama_barang;
         $reqpinjam->id_merk=$barang->id_merkproduct;
-        $reqpinjam->id_lokasi=$barang->id_lokasiproduct;
-        $reqpinjam->id_department=$barang->id_department;
-        $reqpinjam->id_gudang=$barang->id_gudang;
+        // $reqpinjam->id_lokasi=$barang->id_lokasiproduct;
+        // $reqpinjam->id_department=$barang->id_department;
+        // $reqpinjam->id_gudang=$barang->id_gudang;
         // $reqpinjam->jumlah=$request->jumlah;
         $reqpinjam->petugas=$request->petugas;
         $reqpinjam->deskripsi=$request->deskripsi;
@@ -227,7 +227,7 @@ class PinjamBarangController extends Controller
         $product->save();
 
 
-        return redirect()->action([PinjamBarangController::class, 'index_approval']);
+        return redirect()->action([PinjamBarangController::class, 'index_pjbarang']);
 
     }
 
@@ -246,7 +246,7 @@ class PinjamBarangController extends Controller
         $product->save();
 
 
-        return redirect()->action([PinjamBarangController::class, 'index_approval']);
+        return redirect()->action([PinjamBarangController::class, 'index_pjbarang']);
 
     }
 
@@ -285,7 +285,7 @@ class PinjamBarangController extends Controller
         ]);
         $peminjaman->save();
 
-        return redirect()->action([PinjamBarangController::class, 'index_approval']);
+        return redirect()->action([PinjamBarangController::class, 'index_pjbarang']);
 
     }
 
