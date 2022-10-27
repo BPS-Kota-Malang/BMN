@@ -239,7 +239,7 @@
                             </li>
 
                             <li class="nav-item">
-
+                                @can('role','pjbarang')
                                 <a class="nav-link " href="/peminjamanbarang/pjbarang">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
@@ -252,9 +252,9 @@
                                     <i class="sidenav-mini-icon"> P </i>
                                     <span class="item-name">Kelola Peminjaman</span>
                                 </a>
-
+                                @endcan
                             </li>
-                           
+
                             <li class="nav-item">
 
                                 <a class="nav-link " href="{{route('servis.index')}}">
@@ -271,22 +271,7 @@
                                 </a>
 
                             </li>
-                            {{-- <li class="nav-item">
 
-                                <a class="nav-link " href="{{route('servis_hrga.index')}}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> R </i>
-                                    <span class="item-name">Servis</span>
-                                </a>
-
-                            </li> --}}
                             <li class="nav-item">
 
                                 <a class="nav-link " href="{{route('nonaktif.index')}}">
@@ -303,22 +288,7 @@
                                 </a>
 
                             </li>
-                            {{-- <li class="nav-item">
 
-                                <a class="nav-link " href="{{route('nonaktif_hrga.index')}}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> T </i>
-                                    <span class="item-name">Nonaktif</span>
-                                </a>
-
-                            </li> --}}
                         </ul>
                     </li>
 
@@ -366,38 +336,7 @@
                                 </a>
 
                             </li>
-                            {{-- <li class="nav-item">
 
-                                <a class="nav-link " href="{{route('requestorruangan.index')}}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> C </i>
-                                    <span class="item-name">Daftar Ruangan</span>
-                                </a>
-
-                            </li> --}}
-                            {{-- <li class="nav-item">
-
-                                <a class="nav-link " href="{{route('ruangan_hrga.index')}}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> C </i>
-                                    <span class="item-name">Daftar Ruangan</span>
-                                </a>
-
-                            </li> --}}
                             <li class="nav-item">
 
                                 <a class="nav-link " href="{{route('kategoriruangan.index')}}">
@@ -414,25 +353,9 @@
                                 </a>
 
                             </li>
-                            {{-- <li class="nav-item">
-
-                                <a class="nav-link " href="{{route('kategoriruangan_hrga.index')}}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> L </i>
-                                    <span class="item-name">Kategori Ruangan</span>
-                                </a>
-
-                            </li> --}}
 
                             <li class="nav-item">
-
+                                @can('role','pjruangan')
                                 <a class="nav-link" href="/peminjamanruangan/pjruangan">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
@@ -443,26 +366,10 @@
                                         </svg>
                                     </i>
                                     <i class="sidenav-mini-icon"> L </i>
-                                    <span class="item-name">Peminjaman</span>
+                                    <span class="item-name">Kelola Peminjaman</span>
                                 </a>
-
+                                @endcan
                             </li>
-                            {{-- <li class="nav-item">
-
-                                <a class="nav-link" href="/peminjamanruangan_hrga/pjruangan">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> L </i>
-                                    <span class="item-name">Riwayat Peminjaman</span>
-                                </a>
-
-                            </li> --}}
                             <li class="nav-item">
 
                                 <a class="nav-link " href="{{route('ajukanpinjamruangan.create')}}">
@@ -479,22 +386,7 @@
                                 </a>
 
                             </li>
-                            {{-- <li class="nav-item">
 
-                                <a class="nav-link " href="{{route('ajukanpinjamruangan_hrga.create')}}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> K </i>
-                                    <span class="item-name">Ajukan Peminjaman</span>
-                                </a>
-
-                            </li> --}}
                             <li class="nav-item">
 
                                 <a class="nav-link " href="{{route('statuspinjamruangan.index')}}">
@@ -511,22 +403,7 @@
                                 </a>
 
                             </li>
-                            {{-- <li class="nav-item">
 
-                                <a class="nav-link " href="{{route('statuspinjamruangan_hrga.index')}}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> K </i>
-                                    <span class="item-name">Status Peminjaman</span>
-                                </a>
-
-                            </li> --}}
                         </ul>
                     </li>
 
@@ -572,6 +449,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                @can('role','admin')
                                 <a class="nav-link " href="{{route('jabatanuser.index')}}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
@@ -583,8 +461,10 @@
                                     </i>
                                     <span class="item-name">Jabatan</span>
                                 </a>
+                                @endcan
                             </li>
                             <li class="nav-item">
+                                 @can('role','admin')
                                 <a class="nav-link " href="{{route('kelolausers.index')}}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
@@ -596,6 +476,7 @@
                                     </i>
                                     <span class="item-name">Kelola Users</span>
                                 </a>
+                                @endcan
                             </li>
                         </ul>
 

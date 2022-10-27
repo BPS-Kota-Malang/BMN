@@ -11,8 +11,10 @@
         </div>
         <div class="card-body">
             <form action="{{route('ruangan.create')}}" method="GET">
+                @can('role',['pjruangan','admin'])
                 <button type="submit" class="btn btn-success">Tambah Ruangan</button>
             </form>
+            @endcan
             <br><br>
             <div class="table-responsive">
                 <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -44,6 +46,7 @@
                             </td>
                             <td>
                                 <div class="flex align-items-center list-user-action">
+                                    @can('role',['pjruangan','admin'])
                                     <a class="btn btn-sm btn-icon btn-success" data-toggle="tooltip"
                                         data-placement="top" title="" data-original-title="Edit"
                                         href="{{ route('ruangan.edit', $r->id) }}">
@@ -89,6 +92,7 @@
                                             </button>
                                         </form>
                                     </a>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
