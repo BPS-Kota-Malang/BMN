@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $guarded=['id'];
     protected $table = "products";
-    protected $fillable= ['kode_barang', 'nama_barang', 'id_productcategory', 'jumlah', 'keterangan', 'id_statusproduct',  'id_merkproduct', 'tanggal_input'];
+    protected $fillable= ['kode_barang', 'serial_number', 'nama_barang', 'id_productcategory', 'jumlah', 'keterangan', 'id_statusproduct', 'id_kondisi','id_merkproduct', 'tanggal_input'];
 
     public function productcategory()
     {
@@ -23,6 +23,12 @@ class Product extends Model
     // }
 
 
+
+
+    public function kondisi()
+    {
+        return $this->belongsTo(Kondisi::class, 'id_kondisi');
+    }
     public function status()
     {
         return $this->belongsTo(StatusProduct::class, 'id_statusproduct');

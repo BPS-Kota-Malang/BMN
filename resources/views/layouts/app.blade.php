@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/multilevelnav.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -83,6 +84,26 @@
             @yield('content')
         </main>
     </div>
+    
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.dropdown-menu', function (e) {
+              e.stopPropagation();
+            });
+
+            if ($(window).width() < 992) {
+              $('.dropdown-menu a').click(function(e){
+                e.preventDefault();
+                  if($(this).next('.submenu').length){
+                    $(this).next('.submenu').toggle();
+                  }
+                  $('.dropdown').on('hide.bs.dropdown', function () {
+                    $(this).find('.submenu').hide();
+                 })
+              });
+            }
+        });
+      </script>
 </body>
 
 </html>

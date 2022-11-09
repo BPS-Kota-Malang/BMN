@@ -107,6 +107,21 @@ Route::get('/nonaktif', function () {
 
 
 
+// Route::get('/barang/create', function () {
+//     $status = App\Models\StatusProduct::all();
+//     return view('barangs.addbarang',['status' => $status]);
+// });
+
+// Route::get('kondisi/{id}', function ($id) {
+//     $kondisi = App\Models\Kondisi::where('id_statusproduct',$id)->get();
+//     return response()->json($kondisi);
+// });
+
+
+
+
+
+
 
 
 Route::get('/buktipengembalian', function () {

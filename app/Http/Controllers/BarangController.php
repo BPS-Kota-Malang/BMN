@@ -31,9 +31,21 @@ class BarangController extends Controller
         $jrusak = Product::where('id_statusproduct', '=', 9)->count();
         $jdiservis = Product::where('id_statusproduct', '=', 12)->count();
         $jhilang = Product::where('id_statusproduct', '=', 10)->count();
+
+        $jringan = Product::where('id_kondisi', '=', 1)->count();
+        $jsedang = Product::where('id_kondisi', '=', 2)->count();
+        $jberat = Product::where('id_kondisi', '=', 3)->count();
+
         $barang = Product::orderBy('id','desc')->get();
-        return view('barangs.index', compact('barang','jtersedia','jdipinjam','jrusak','jhilang','jdiservis'));
+        // $kondisi= DB::table('products')
+        //                 ->groupBy('id_statusproduct')
+        //                 ->get();
+        return view('barangs.index', compact('barang','jtersedia','jdipinjam','jrusak','jhilang','jdiservis','jringan','jsedang','jberat'));
     }
+
+    // public function GetSubCatAgainstMainCatEdit($id){
+    //     echo json_encode(DB::table('products')->where('id_kondisi', $id)->get());
+    // }
 
 
     /**
@@ -63,7 +75,7 @@ class BarangController extends Controller
             $kd = "0001";
         }
 
-        return view ('barangs.addbarang', compact('prodcat', 'merk', 'status','kondisi', 'kd'));
+        return view ('barangs.addbarang', compact('prodcat', 'merk', 'status', 'kd','kondisi'));
     }
 
     /**
@@ -76,9 +88,11 @@ class BarangController extends Controller
     {
         Product::create([
             'kode_barang' => $request->kode_barang,
+            'serial_number'=>$request->serial_number,
             'nama_barang' => $request->nama_barang,
             'id_merkproduct' => $request->id_merkbarang,
             'id_productcategory' => $request->id_kategoribarang,
+            'id_kondisi'=>$request->id_kondisi,
             // 'harga_beli' => $request->hargabeli,
             'jumlah' => $request->jumlah,
             // 'satuan' => $request->satuan,
@@ -110,15 +124,16 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        $prod = Product::with('productcategory', 'merek', 'status', )->find($id);
+        $prod = Product::with('productcategory', 'merek', 'status', 'kondisi' )->find($id);
         $prodcat = ProductCategory::all();
         $merk = MerkProduct::all();
+        $kondisi = Kondisi::all();
 
         $status = StatusProduct::all();
 
 
 
-        return view ('barangs.editbarang', compact('prod', 'prodcat', 'merk', 'status',));
+        return view ('barangs.editbarang', compact('prod', 'prodcat', 'merk', 'status','kondisi'));
     }
 
     /**
@@ -130,12 +145,13 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $prod = Product::with('productcategory', 'merek', 'status')->find($id);
+        $prod = Product::with('productcategory', 'merek', 'status','kondisi')->find($id);
         $prod->kode_barang=$request->kode_barang;
+        $prod->serial_number=$request->serial_number;
         $prod->nama_barang=$request->nama_barang;
         $prod->id_merkproduct=$request->id_merkbarang;
         $prod->id_productcategory=$request->id_kategoribarang;
-
+        $prod->id_kondisi=$request->kondisi;
         // $prod->harga_beli=$request->hargabeli;
         $prod->jumlah=$request->jumlah;
         // $prod->satuan=$request->satuan;
@@ -156,7 +172,7 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        $prod = Product::with('productcategory', 'merek', 'status')->find($id);
+        $prod = Product::with('productcategory', 'merek', 'status','kondisi')->find($id);
         $prod->delete();
         return redirect()->route('barang.index');
     }

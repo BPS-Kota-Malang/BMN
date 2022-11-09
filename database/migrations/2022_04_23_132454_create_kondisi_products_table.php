@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKondisiProductTable extends Migration
+class CreateKondisiProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,9 @@ class CreateKondisiProductTable extends Migration
         Schema::create('kondisi_products', function (Blueprint $table) {
             $table->id();
             $table->string('kode_kondisi');
-            $table->unsignedBigInteger('id_statusproduct');
+            // $table->integer('id_statusproduct');
             $table->string('jenis_kondisi');
-            $table->foreign('id_statusproduct')->references('id')->on('status_products');
+            // $table->foreign('id_statusproduct')->references('id')->on('status_products');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateKondisiProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kondisi_product');
+        Schema::dropIfExists('kondisi_products');
     }
 }

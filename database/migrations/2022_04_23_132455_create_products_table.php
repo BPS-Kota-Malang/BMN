@@ -17,7 +17,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('kode_barang');
+            $table->string('serial_number');
             $table->string('nama_barang');
+
             $table->double('harga_beli')->nullable();
             $table->double('jumlah')->nullable();
             $table->string('satuan')->nullable();
@@ -25,9 +27,12 @@ class CreateProductsTable extends Migration
             $table->date('tanggal_input');
 
             $table->timestamps();
+
+            $table->unsignedBigInteger('id_kondisi')->nullable();
             $table->unsignedBigInteger('id_productcategory');
             $table->unsignedBigInteger('id_statusproduct');
             $table->unsignedBigInteger('id_merkproduct');
+            $table->foreign('id_kondisi')->references('id')->on('kondisi_products');
             $table->foreign('id_productcategory')->references('id')->on('product_categories');
 
             $table->foreign('id_statusproduct')->references('id')->on('status_products');

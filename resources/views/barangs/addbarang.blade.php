@@ -20,6 +20,11 @@
                         readonly> --}}
                 </div>
                 <div class="form-group">
+                    <label class="form-label" for="nm_barang"><b>Serial Number</b></label>
+                    <input type="text" class="form-control" id="serial_number" name="serial_number"
+                        placeholder="Input Serial Number...">
+                </div>
+                <div class="form-group">
                     <label class="form-label" for="nm_barang"><b>Nama Barang</b></label>
                     <input type="text" class="form-control" id="nama_barang" name="nama_barang"
                         placeholder="Input nama barang...">
@@ -83,20 +88,41 @@
                                         <select class="form-select mb-3 shadow-none" name="id_statusbarang"
                                             id="id_statusbarang">
                                             <option selected="">Pilih Status...</option>
+                                            {{-- @foreach ($kondisi as $k)
+                                            <option value="{{ $s->id }}">{{ $s->nama_statusbarang }}</option>
+                                            @endforeach --}}
+                                            {{-- @foreach($status as $s)
+                                                    <option  value="{{ $s->id }}">{{ ucfirst($s->nama_statusbarang) }}</option>
+                                            @endforeach --}}
                                             @foreach ($status as $s)
                                             <option value="{{ $s->id }}">{{ $s->nama_statusbarang }}</option>
+                                            @endforeach
+                                        </select>
+                                        <label class="form-label"><b>kondisi</b></label>
+                                        <select class="form-select mb-3 shadow-none" name="id_kondisi"
+                                            id="id_kondisi">
+                                            <option selected="">Pilih kondisi...</option>
+                                            @foreach ($kondisi as $k)
+                                            <option value="{{ $k->id }}">{{ $k->jenis_kondisi }}</option>
                                             @endforeach
                                         </select>
                                         <div class="form-group">
                                             <label class="form-label" for="tgl_kembali"><b>Tanggal Input</b></label>
                                             <input type="date" class="form-control" id="tglinput" name="tglinput">
                                         </div>
-                                    </div><br><br>
+                                    </div>
+                                    <br>
+                                    <br>
+
                                     <button type="submit" class="btn btn-primary">Tambahkan</button>
             </form>
+
         </div>
     </div>
 </div>
+
+
+
 </div>
 </div>
 </div>

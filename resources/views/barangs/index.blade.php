@@ -116,6 +116,7 @@
                         <tr>
                             <th>NO</th>
                             <th>KODE BARANG</th>
+                            <th>SERIAL NUMBER</th>
                             <th>NAMA BARANG</th>
                             <!-- <th>MERK</th> -->
                             <th>KATEGORI</th>
@@ -123,6 +124,7 @@
                              <!--<th>JUMLAH</th>-->
                            {{-- <-- <th>SATUAN</th> --> --}}
                             <th>STATUS</th>
+                            <th>KONDISI</th>
                             <th>TANGGAL INPUT</th>
                             <th>AKSI</th>
                         </tr>
@@ -132,6 +134,7 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$b->kode_barang}}</td>
+                            <td>{{ $b->serial_number }}</td>
                             <td>{{$b->nama_barang}} ({{$b->merek->nama_merkbarang}})</td>
                             <td>{{$b->productcategory->nama_kategbarang}}</td>
 
@@ -151,6 +154,16 @@
                                     <span class="badge bg-warning">Diservis</span>
                                 @else ($b->status->nama_statusbarang=='Diajukan')
                                     <span class="badge bg-success">Diajukan</span>
+                                @endif
+                            </td>
+                            {{-- <td>{{ $b->id_kondisi }}({{ $b->kondisi->jenis_kondisi }}) </td> --}}
+                            <td>
+                                @if ($b->Kondisi->jenis_kondisi=='ringan')
+                                    <span class="badge bg-primary">ringan</span>
+                                @elseif ($b->kondisi->jenis_kondisi=='Rusak')
+                                    <span class="badge bg-danger">berat</span>
+                                @elseif ($b->kondisi->jenis_kondisi=='Diservis')
+                                    <span class="badge bg-warning">sedang</span>
                                 @endif
                             </td>
                             <td>{{$b->tanggal_input}}</td>

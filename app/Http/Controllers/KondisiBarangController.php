@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kondisi;
 use Illuminate\Http\Request;
-use App\Models\StatusProduct;
+// use App\Models\StatusProduct;
 use Illuminate\Support\Facades\Gate;
 use PDF;
 use DB;
@@ -20,12 +20,12 @@ class KondisiBarangController extends Controller
     {
         // $jtersedia = Product::where('id_statusproduct', '=', 8)->count();
         // $jdipinjam = Product::where('id_statusproduct', '=', 11)->count();
-       $status=StatusProduct::all();
+    //    $status=StatusProduct::all();
         // $jdiservis = Product::where('id_statusproduct', '=', 12)->count();
         // $jhilang = Product::where('id_statusproduct', '=', 10)->count();
 
         $kondisi=Kondisi::all();
-        return view('barangs.kondisi', compact('kondisi','status'));
+        return view('barangs.kondisi', compact('kondisi'));
     }
 
     /**
@@ -35,7 +35,7 @@ class KondisiBarangController extends Controller
      */
     public function create()
     {
-        $status = StatusProduct::all();
+        // $status = StatusProduct::all();
 
         $q = DB::table('kondisi_products')->select(DB::raw('MAX(RIGHT(kode_kondisi,4)) as kode'));
         $kd="";
@@ -51,7 +51,7 @@ class KondisiBarangController extends Controller
             $kd = "0001";
         }
 
-        return view('barangs.addkondisi', compact('kd','status'));
+        return view('barangs.addkondisi', compact('kd'));
     }
 
     /**
@@ -65,7 +65,7 @@ class KondisiBarangController extends Controller
         Kondisi::create([
             'kode_kondisi'=>$request->kode_kondisi,
             'jenis_kondisi' => $request->jenis_kondisi,
-            'id_statusproduct' => $request->id_statusbarang,
+            // 'id_statusproduct' => $request->id_statusbarang,
 
 
         ]);
@@ -93,8 +93,8 @@ class KondisiBarangController extends Controller
     public function edit($id)
     {
         $kondisi = Kondisi::find($id);
-        $status = StatusProduct::all();
-        return view ('barangs.editkondisibarang', compact('kondisi','status'));
+        // $status = StatusProduct::all();
+        return view ('barangs.editkondisibarang', compact('kondisi'));
     }
 
     /**
@@ -106,10 +106,10 @@ class KondisiBarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $kondisi = Kondisi::with('status')->find($id);
+        $kondisi = Kondisi::find($id);
         $kondisi->kode_kondisi=$request->kode_kondisi;
         $kondisi->jenis_kondisi=$request->jenis_kondisi;
-        $kondisi->id_statusproduct=$request->id_statusbarang;
+        // $kondisi->id_statusproduct=$request->id_statusbarang;
 
         $kondisi->save();
         return redirect('/kondisibarang');
@@ -123,12 +123,12 @@ class KondisiBarangController extends Controller
      */
     public function destroy($id)
     {
-        $kondisi = Kondisi::with('status')->find($id);
+        $kondisi = Kondisi::with('kondisi')->find($id);
         $kondisi->delete();
         return redirect()->route('kondisibarang.index');
     }
 
-    public function cetak_statusbarang()
+    public function cetak_kondisibarang()
     {
         $kondisi = Kondisi::all();
 

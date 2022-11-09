@@ -50,16 +50,16 @@
         <tr>
             <th>NO</th>
             <th>KODE KONDISI</th>
-            <th>KONDISI</th>
-            <th>KATEGORI</th>
+            <th>JENIS KONDISI</th>
+
         </tr>
         <tr>
             @foreach($kondisi as $k)
         <tr>
             <td>{{$loop->iteration}}</td>
             <td>{{$k->kode_kondisi}}</td>
-            <td>{{$k->nama_kondisibarang}}</td>
-            <td>{{$k->kategori}}</td>
+            <td>{{$k->jenis_kondisi}}</td>
+
         </tr>
         @endforeach
         </tr>

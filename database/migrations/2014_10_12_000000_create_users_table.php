@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('kontak');
             $table->string('alamat');
-            // $table->string('image')-nullable();
+            $table->string('image')->nullable();
             $table->enum('role', ['admin', 'pjruangan', 'pjbarang', 'peminjam'])->default('peminjam');
             $table->unsignedBigInteger('id_jabatan');
             $table->foreign('id_jabatan')->references('id')->on('jabatan');

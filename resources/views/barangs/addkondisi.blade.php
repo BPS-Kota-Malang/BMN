@@ -18,7 +18,7 @@
                         readonly>
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="form-label"><b>Status</b></label>
                     <select class="form-select mb-3 shadow-none" name="id_statusbarang"
                         id="id_statusbarang">
@@ -26,7 +26,7 @@
                         @foreach ($status as $s)
                         <option value="{{ $s->id }}">{{ $s->nama_statusbarang }}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
 
                     <div class="form-group">
                         <label class="form-label"><b>Jenis Kondisi</b></label>
