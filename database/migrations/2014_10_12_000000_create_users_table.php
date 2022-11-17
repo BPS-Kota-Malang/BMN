@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('kontak');
             $table->string('alamat');
             $table->string('image')->nullable();
-            $table->enum('role', ['admin', 'pjruangan', 'pjbarang', 'peminjam'])->default('peminjam');
+            $table->enum('role', ['admin', 'pjruangan', 'pjbarang', 'user'])->default('user');
             $table->unsignedBigInteger('id_jabatan');
             $table->foreign('id_jabatan')->references('id')->on('jabatan');
             $table->rememberToken();

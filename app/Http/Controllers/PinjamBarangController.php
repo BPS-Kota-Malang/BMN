@@ -58,6 +58,15 @@ class PinjamBarangController extends Controller
     {
         //proses menampilkan daftar barang dengan status "tersedia" dan "diajukan"
         $barang = Product::where('id_statusproduct', '=' , 8)->get();
+        // if($petugas == 'pjbarang')
+        // {
+        //     return view('barangs.userpeminjamanbarang');
+        // }else if($petugas == 'admin'){
+        //     return view('barangs.userpeminjamanbarang');
+        // }
+        // else{
+
+        // }
         $petugas = User::where('role', '=' ,'pjbarang')->get();
 
         //membuat kode peminjaman barang

@@ -22,7 +22,7 @@
                         <tr>
                             <th>NO</th>
                             <th>Kode Kondisi</th>
-                            {{-- <th>Status</th> --}}
+                            <th>Status</th>
                             <th>Jenis Kategori</th>
                             <th>AKSI</th>
                         </tr>
@@ -32,6 +32,7 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{ $k->kode_kondisi }}</td>
+                            <td>{{ $k->id_statusproduct }}</td>
                             <td>{{$k->jenis_kondisi}}</td>
                             {{-- <td>{{ $k->status->nama_statusbarang}}</td> --}}
 

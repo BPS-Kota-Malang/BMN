@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $guarded=['id'];
     protected $table = "products";
-    protected $fillable= ['kode_barang', 'serial_number', 'nama_barang', 'id_productcategory', 'jumlah', 'keterangan', 'id_statusproduct', 'id_kondisi','id_merkproduct', 'tanggal_input'];
+    protected $fillable= ['kode_barang', 'serial_number', 'nama_barang', 'id_productcategory', 'jumlah', 'keterangan', 'id_statusproduct', 'kondisi','id_merkproduct', 'tanggal_input'];
 
     public function productcategory()
     {

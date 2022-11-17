@@ -43,6 +43,19 @@ class BarangController extends Controller
         return view('barangs.index', compact('barang','jtersedia','jdipinjam','jrusak','jhilang','jdiservis','jringan','jsedang','jberat'));
     }
 
+    // public function Getkondisi($id)
+    // {
+    //     $html='';
+    //     $kondisi=Kondisi::where('id_statusproduct',$id)->get();
+    //     // return response()->json($kondisi);
+
+    //     foreach($kondisi as $k) {
+    //         $html.= '<option value="'.$k->id.'">'.$k->jenis_kondisi.'</option>';
+    //     }
+
+    //     return response()->json($html);
+    // }
+
     // public function GetSubCatAgainstMainCatEdit($id){
     //     echo json_encode(DB::table('products')->where('id_kondisi', $id)->get());
     // }
@@ -58,7 +71,10 @@ class BarangController extends Controller
         $prodcat = ProductCategory::all();
         $merk = MerkProduct::all();
         $status = StatusProduct::all();
-        $kondisi = Kondisi::all();
+        // $kondisi = Kondisi::all();
+        $kondisi=Kondisi::all();
+        // return response()->json($kondisi);
+
 
 
         $q = DB::table('products')->select(DB::raw('MAX(RIGHT(kode_barang,4)) as kode'));
@@ -74,8 +90,8 @@ class BarangController extends Controller
         else{
             $kd = "0001";
         }
-
         return view ('barangs.addbarang', compact('prodcat', 'merk', 'status', 'kd','kondisi'));
+        return response()->json($kondisi);
     }
 
     /**
@@ -92,7 +108,7 @@ class BarangController extends Controller
             'nama_barang' => $request->nama_barang,
             'id_merkproduct' => $request->id_merkbarang,
             'id_productcategory' => $request->id_kategoribarang,
-            'id_kondisi'=>$request->id_kondisi,
+            'kondisi'=>$request->kondisi,
             // 'harga_beli' => $request->hargabeli,
             'jumlah' => $request->jumlah,
             // 'satuan' => $request->satuan,

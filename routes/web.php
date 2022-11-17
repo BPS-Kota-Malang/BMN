@@ -244,6 +244,7 @@ Route::get('/editkatruangan', function () {
 //barang
 
 Route::resource('barang', BarangController::class);
+// Route::get('/barang/create/{id}', BarangController::class, ' Getkondisi')->name('barang');
 
 Route::resource('kategoribarang', KategoriBarangController::class);
 Route::resource('merkbarang', MerkBarangController::class);

@@ -28,7 +28,7 @@ class CreateProductsTable extends Migration
 
             $table->timestamps();
 
-            $table->unsignedBigInteger('id_kondisi')->nullable();
+            $table->unsignedBigInteger('id_kondisi');
             $table->unsignedBigInteger('id_productcategory');
             $table->unsignedBigInteger('id_statusproduct');
             $table->unsignedBigInteger('id_merkproduct');

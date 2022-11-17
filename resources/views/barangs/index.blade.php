@@ -115,7 +115,7 @@
                     <thead>
                         <tr>
                             <th>NO</th>
-                            <th>KODE BARANG</th>
+                            <th>KODE BMN</th>
                             <th>SERIAL NUMBER</th>
                             <th>NAMA BARANG</th>
                             <!-- <th>MERK</th> -->
@@ -158,13 +158,7 @@
                             </td>
                             {{-- <td>{{ $b->id_kondisi }}({{ $b->kondisi->jenis_kondisi }}) </td> --}}
                             <td>
-                                @if ($b->Kondisi->jenis_kondisi=='ringan')
-                                    <span class="badge bg-primary">ringan</span>
-                                @elseif ($b->kondisi->jenis_kondisi=='Rusak')
-                                    <span class="badge bg-danger">berat</span>
-                                @elseif ($b->kondisi->jenis_kondisi=='Diservis')
-                                    <span class="badge bg-warning">sedang</span>
-                                @endif
+                               {{ $b->kondisi }}
                             </td>
                             <td>{{$b->tanggal_input}}</td>
                             <td>

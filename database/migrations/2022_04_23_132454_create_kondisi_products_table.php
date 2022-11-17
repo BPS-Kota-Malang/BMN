@@ -16,9 +16,10 @@ class CreateKondisiProductsTable extends Migration
         Schema::create('kondisi_products', function (Blueprint $table) {
             $table->id();
             $table->string('kode_kondisi');
+            $table->unsignedBigInteger('id_statusproduct');
             // $table->integer('id_statusproduct');
             $table->string('jenis_kondisi');
-            // $table->foreign('id_statusproduct')->references('id')->on('status_products');
+            $table->foreign('id_statusproduct')->references('id')->on('status_products');
             $table->timestamps();
         });
     }

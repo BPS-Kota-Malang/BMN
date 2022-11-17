@@ -50,7 +50,7 @@
     <table id="barang">
         <tr>
             <th>No</th>
-            <th>Kode Barang</th>
+            <th>Kode BMN</th>
             <th>Nama Barang</th>
             <!-- <th>Merk</th> -->
             <th>Kategori</th>
